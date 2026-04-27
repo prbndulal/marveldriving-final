@@ -22,11 +22,15 @@ export async function GET(req: Request) {
             }
         });
 
-        // 2. Fetch existing bookings for this date (excluding cancelled)
+        // 2. Fetch confirmed bookings + pending bookings created within the last 15 minutes
+        const pendingCutoff = new Date(Date.now() - 15 * 60 * 1000);
         const bookings = await prisma.booking.findMany({
             where: {
                 date: new Date(dateStr),
-                status: { not: 'cancelled' }
+                OR: [
+                    { status: 'confirmed' },
+                    { status: 'pending', createdAt: { gte: pendingCutoff } }
+                ]
             },
             select: { time: true }
         });

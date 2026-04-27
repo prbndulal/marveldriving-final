@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,58 +14,58 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
-  role          String    @default("user") // "admin" or "user"
+  role          String    @default("user")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   bookings      Booking[]
 }
 
 model Booking {
-  id             String   @id @default(cuid())
-  userId         String?
-  user           User?    @relation(fields: [userId], references: [id])
-  customerName   String
-  customerEmail  String
-  customerPhone  String
-  serviceName    String
-  servicePrice   Float
-  date           DateTime
-  time           String
-  status         String   @default("pending") // "pending", "confirmed", "cancelled"
-  paymentStatus  String   @default("unpaid")  // "unpaid", "paid"
-  stripeId       String?
-  instructorId   String?
-  instructor     Instructor? @relation(fields: [instructorId], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            String      @id @default(cuid())
+  userId        String?
+  customerName  String
+  customerEmail String
+  customerPhone String
+  serviceName   String
+  servicePrice  Float
+  date          DateTime
+  time          String
+  status        String      @default("pending")
+  paymentStatus String      @default("unpaid")
+  stripeId      String?
+  instructorId  String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  instructor    Instructor? @relation(fields: [instructorId], references: [id])
+  user          User?       @relation(fields: [userId], references: [id])
 }
 
 model Enquiry {
-  id            String   @id @default(cuid())
-  name          String
-  email         String
-  phone         String
-  subject       String
-  message       String
-  type          String   @default("general") // "general", "ndis", etc.
-  status        String   @default("new")     // "new", "read", "replied"
-  createdAt     DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  type      String   @default("general")
+  status    String   @default("new")
+  createdAt DateTime @default(now())
 }
 
 model Availability {
-  id            String   @id @default(cuid())
-  dayOfWeek     Int      @unique // 0-6 (Sunday-Saturday)
-  startTime     String   @default("07:00")
-  endTime       String   @default("18:00")
-  isActive      Boolean  @default(true)
+  id        String  @id @default(cuid())
+  dayOfWeek Int     @unique
+  startTime String  @default("07:00")
+  endTime   String  @default("18:00")
+  isActive  Boolean @default(true)
 }
 
 model Instructor {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  specialty     String?
-  image         String?
-  isActive      Boolean   @default(true)
-  bookings      Booking[]
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  specialty String?
+  image     String?
+  isActive  Boolean   @default(true)
+  bookings  Booking[]
 }

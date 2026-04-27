@@ -43,33 +43,42 @@ export async function POST(req: Request) {
             throw new Error('Stripe is not configured. STRIPE_SECRET_KEY may be missing.');
         }
 
-        // 1. Conflict Check
-        const existing = await prisma.booking.findFirst({
-            where: {
-                date: new Date(date),
-                time: time,
-                status: { not: 'cancelled' }
-            }
-        });
+        // 1. Conflict check + booking creation in a transaction to prevent race conditions
+        let booking;
+        try {
+            booking = await prisma.$transaction(async (tx) => {
+                const existing = await tx.booking.findFirst({
+                    where: {
+                        date: new Date(date),
+                        time: time,
+                        status: { in: ['pending', 'confirmed'] }
+                    }
+                });
 
-        if (existing) {
-            return NextResponse.json({ error: "This time slot is already booked." }, { status: 400 });
+                if (existing) {
+                    throw new Error("SLOT_TAKEN");
+                }
+
+                return tx.booking.create({
+                    data: {
+                        customerName,
+                        customerEmail,
+                        customerPhone,
+                        serviceName,
+                        servicePrice: numericPrice,
+                        date: new Date(date),
+                        time: time,
+                        status: 'pending',
+                        paymentStatus: 'unpaid'
+                    }
+                });
+            });
+        } catch (txError: any) {
+            if (txError.message === "SLOT_TAKEN") {
+                return NextResponse.json({ error: "This time slot is already booked." }, { status: 400 });
+            }
+            throw txError;
         }
-
-        // 2. Create a Pending Booking in your Render database
-        const booking = await prisma.booking.create({
-            data: {
-                customerName,
-                customerEmail,
-                customerPhone,
-                serviceName,
-                servicePrice: numericPrice,
-                date: new Date(date),
-                time: time,
-                status: 'pending',
-                paymentStatus: 'unpaid'
-            }
-        });
 
         // 3. Create the Stripe Checkout Session
         const session = await stripe.checkout.sessions.create({

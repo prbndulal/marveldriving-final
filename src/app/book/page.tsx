@@ -21,7 +21,7 @@ import {
     Sparkles,
     FileCheck
 } from "lucide-react";
-import { addDays, format, isBefore, startOfDay } from "date-fns";
+import { addDays, format, isBefore, startOfDay, parse } from "date-fns";
 import { useAvailability } from "@/hooks/useAvailability";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -123,6 +123,14 @@ function BookingContent() {
                 description: "Your booking has been confirmed. Check your email for details.",
             });
         } else if (status === "cancelled") {
+            const bookingId = searchParams.get("booking_id");
+            if (bookingId) {
+                fetch("/api/bookings/cancel", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ bookingId }),
+                });
+            }
             toast({
                 title: "Payment Cancelled",
                 description: "Your payment was cancelled. Please try again.",
@@ -485,7 +493,7 @@ function BookingContent() {
                                                                 availableSlots.map((slot) => (
                                                                     <SelectItem
                                                                         key={slot.time}
-                                                                        value={slot.displayTime}
+                                                                        value={slot.time}
                                                                         disabled={!slot.available}
                                                                         className={cn(
                                                                             "py-3",
@@ -747,7 +755,7 @@ function BookingContent() {
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-gray-500">Date & Time</p>
-                                                    <p className="font-semibold">{formData.lessonDate ? format(formData.lessonDate, "EEEE, d MMMM yyyy") : ""} at {formData.lessonTime}</p>
+                                                    <p className="font-semibold">{formData.lessonDate ? format(formData.lessonDate, "EEEE, d MMMM yyyy") : ""} at {formData.lessonTime ? format(parse(formData.lessonTime, 'HH:mm', new Date()), 'h:mm a') : ""}</p>
                                                 </div>
                                             </div>
 
