@@ -2,6 +2,10 @@ import { MapPin, Car, Shield, Sparkles } from "lucide-react";
 
 export function ServiceAreaMarquee() {
     const items = [
+        { icon: MapPin, text: "SYDNEY CBD" },
+        { icon: Sparkles, text: "" },
+        { icon: MapPin, text: "PENSHURST" },
+        { icon: Sparkles, text: "" },
         { icon: MapPin, text: "HURSTVILLE" },
         { icon: Sparkles, text: "" },
         { icon: MapPin, text: "BEXLEY" },
@@ -10,10 +14,12 @@ export function ServiceAreaMarquee() {
         { icon: Sparkles, text: "" },
         { icon: Shield, text: "NDIS REGISTERED PROVIDER" },
         { icon: Sparkles, text: "" },
+        { icon: Car, text: "NEW REGISTRATIONS WELCOME" },
+        { icon: Sparkles, text: "" },
     ];
 
     return (
-        <div className="bg-[#1e5128] text-white py-3 overflow-hidden whitespace-nowrap relative z-20 border-b border-white/10">
+        <div className="bg-[#1B7640] text-white py-3 overflow-hidden whitespace-nowrap relative z-20 border-b border-white/10">
             <div className="flex animate-marquee items-center">
                 {[...items, ...items, ...items, ...items].map((item, index) => (
                     <div key={index} className="flex items-center mx-10 opacity-90 transition-opacity">

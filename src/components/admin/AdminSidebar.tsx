@@ -11,7 +11,9 @@ import {
     LogOut,
     Car,
     Clock,
-    Home
+    Home,
+    Images,
+    BookOpen
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -44,6 +46,16 @@ const sidebarItems = [
         href: "/admin/instructors",
         icon: Users,
     },
+    {
+        title: "Gallery",
+        href: "/admin/gallery",
+        icon: Images,
+    },
+    {
+        title: "Blog",
+        href: "/admin/blog",
+        icon: BookOpen,
+    },
 ];
 
 export function AdminSidebar() {
@@ -69,10 +81,10 @@ export function AdminSidebar() {
     };
 
     return (
-        <div className="flex h-screen w-72 flex-col border-r border-gray-800 bg-[#0a2f14] text-white shadow-2xl">
+        <div className="flex h-screen w-72 flex-col border-r border-gray-800 bg-[#0d4a28] text-white shadow-2xl">
             <div className="p-8">
                 <Link href="/" className="flex items-center gap-3 font-black text-2xl text-[#fbbf24] tracking-tighter group">
-                    <div className="p-2 bg-[#fbbf24] rounded-xl text-[#0a2f14] group-hover:rotate-12 transition-transform duration-300">
+                    <div className="p-2 bg-[#fbbf24] rounded-xl text-[#0d4a28] group-hover:rotate-12 transition-transform duration-300">
                         <Car className="h-6 w-6" />
                     </div>
                     <span>Marvel Admin</span>
@@ -89,11 +101,11 @@ export function AdminSidebar() {
                             className={cn(
                                 "flex items-center gap-4 rounded-2xl px-4 py-4 text-sm font-extrabold transition-all duration-300",
                                 pathname === item.href 
-                                ? "bg-[#fbbf24] text-[#0a2f14] shadow-lg shadow-[#fbbf24]/10 translate-x-1" 
+                                ? "bg-[#fbbf24] text-[#0d4a28] shadow-lg shadow-[#fbbf24]/10 translate-x-1" 
                                 : "text-white/60 hover:text-white hover:bg-white/5"
                             )}
                         >
-                            <item.icon className={cn("h-5 w-5", pathname === item.href ? "text-[#0a2f14]" : "text-[#fbbf24]/70")} />
+                            <item.icon className={cn("h-5 w-5", pathname === item.href ? "text-[#0d4a28]" : "text-[#fbbf24]/70")} />
                             {item.title}
                         </Link>
                     ))}

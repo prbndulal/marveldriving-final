@@ -319,9 +319,9 @@ function BookingContent() {
                                             className={cn(
                                                 "w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300",
                                                 isCompleted
-                                                    ? "bg-[#1e5128] text-white shadow-lg"
+                                                    ? "bg-[#1B7640] text-white shadow-lg"
                                                     : isActive
-                                                        ? "bg-[#1e5128] text-white ring-4 ring-[#1e5128]/20"
+                                                        ? "bg-[#1B7640] text-white ring-4 ring-[#1B7640]/20"
                                                         : "bg-gray-100 text-gray-400"
                                             )}
                                         >
@@ -333,7 +333,7 @@ function BookingContent() {
                                         </div>
                                         <span className={cn(
                                             "mt-2 text-xs md:text-sm font-medium hidden sm:block",
-                                            isActive || isCompleted ? "text-[#1e5128]" : "text-gray-400"
+                                            isActive || isCompleted ? "text-[#1B7640]" : "text-gray-400"
                                         )}>
                                             {s.label}
                                         </span>
@@ -341,7 +341,7 @@ function BookingContent() {
                                     {i < stepInfo.length - 1 && (
                                         <div className={cn(
                                             "w-8 md:w-16 h-1 mx-2 md:mx-3 rounded-full transition-colors",
-                                            step > s.num ? "bg-[#1e5128]" : "bg-gray-200"
+                                            step > s.num ? "bg-[#1B7640]" : "bg-gray-200"
                                         )} />
                                     )}
                                 </div>
@@ -364,8 +364,8 @@ function BookingContent() {
                             {step === 1 && (
                                 <div>
                                     <div className="text-center mb-8">
-                                        <div className="w-14 h-14 bg-[#1e5128]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <Car className="h-7 w-7 text-[#1e5128]" />
+                                        <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                            <Car className="h-7 w-7 text-[#1B7640]" />
                                         </div>
                                         <h2 className="text-2xl md:text-3xl font-bold mb-2">Select Your Service</h2>
                                         <p className="text-gray-500">
@@ -384,8 +384,8 @@ function BookingContent() {
                                                     className={cn(
                                                         "group flex items-start gap-4 p-5 rounded-xl border-2 cursor-pointer transition-all duration-300",
                                                         isSelected
-                                                            ? "border-[#1e5128] bg-[#1e5128]/5 shadow-md"
-                                                            : "border-gray-100 hover:border-[#1e5128]/40 hover:bg-gray-50"
+                                                            ? "border-[#1B7640] bg-[#1B7640]/5 shadow-md"
+                                                            : "border-gray-100 hover:border-[#1B7640]/40 hover:bg-gray-50"
                                                     )}
                                                 >
                                                     <input
@@ -398,7 +398,7 @@ function BookingContent() {
                                                     />
                                                     <div className={cn(
                                                         "flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-colors",
-                                                        isSelected ? "bg-[#1e5128] text-white" : "bg-gray-100 text-gray-500 group-hover:bg-[#1e5128]/10 group-hover:text-[#1e5128]"
+                                                        isSelected ? "bg-[#1B7640] text-white" : "bg-gray-100 text-gray-500 group-hover:bg-[#1B7640]/10 group-hover:text-[#1B7640]"
                                                     )}>
                                                         <ServiceIcon className="h-6 w-6" />
                                                     </div>
@@ -412,7 +412,7 @@ function BookingContent() {
                                                                 "flex-shrink-0 px-3 py-1 rounded-full text-sm font-semibold",
                                                                 service.isPaid
                                                                     ? "bg-yellow-100 text-yellow-800"
-                                                                    : "bg-[#1e5128]/10 text-[#1e5128]"
+                                                                    : "bg-[#1B7640]/10 text-[#1B7640]"
                                                             )}>
                                                                 {service.price}
                                                             </span>
@@ -428,7 +428,7 @@ function BookingContent() {
                                             onClick={() => setStep(2)}
                                             disabled={!formData.serviceType}
                                             size="lg"
-                                            className="px-8 bg-[#1e5128] hover:bg-[#153e1e]"
+                                            className="px-8 bg-[#1B7640] hover:bg-[#153e1e]"
                                         >
                                             Continue
                                             <ChevronRight className="h-5 w-5 ml-1" />
@@ -440,8 +440,8 @@ function BookingContent() {
                             {step === 2 && (
                                 <div>
                                     <div className="text-center mb-8">
-                                        <div className="w-14 h-14 bg-[#1e5128]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <CalendarIcon className="h-7 w-7 text-[#1e5128]" />
+                                        <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                            <CalendarIcon className="h-7 w-7 text-[#1B7640]" />
                                         </div>
                                         <h2 className="text-2xl md:text-3xl font-bold mb-2">Choose Date & Time</h2>
                                         <p className="text-gray-500">
@@ -453,7 +453,7 @@ function BookingContent() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="space-y-3">
                                                 <Label className="text-base font-semibold flex items-center gap-2">
-                                                    <CalendarIcon className="h-4 w-4 text-[#1e5128]" />
+                                                    <CalendarIcon className="h-4 w-4 text-[#1B7640]" />
                                                     Lesson Date
                                                 </Label>
                                                 <div className="border rounded-xl p-4 bg-white shadow-sm flex justify-center">
@@ -472,7 +472,7 @@ function BookingContent() {
                                             </div>
                                             <div className="space-y-3">
                                                 <Label htmlFor="lessonTime" className="text-base font-semibold flex items-center gap-2">
-                                                    <Clock className="h-4 w-4 text-[#1e5128]" />
+                                                    <Clock className="h-4 w-4 text-[#1B7640]" />
                                                     Lesson Time
                                                 </Label>
                                                 {slotsLoading ? (
@@ -527,12 +527,12 @@ function BookingContent() {
                                         {selectedService && (
                                             <div className="p-4 bg-gray-50 rounded-xl">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 bg-[#1e5128]/10 rounded-lg flex items-center justify-center">
-                                                        <selectedService.icon className="h-5 w-5 text-[#1e5128]" />
+                                                    <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center">
+                                                        <selectedService.icon className="h-5 w-5 text-[#1B7640]" />
                                                     </div>
                                                     <div>
                                                         <p className="font-semibold">{selectedService.label}</p>
-                                                        <p className="text-sm text-[#1e5128] font-medium">{selectedService.price}</p>
+                                                        <p className="text-sm text-[#1B7640] font-medium">{selectedService.price}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -547,7 +547,7 @@ function BookingContent() {
                                             onClick={() => setStep(3)}
                                             disabled={!formData.lessonDate || !formData.lessonTime}
                                             size="lg"
-                                            className="px-8 bg-[#1e5128] hover:bg-[#153e1e]"
+                                            className="px-8 bg-[#1B7640] hover:bg-[#153e1e]"
                                         >
                                             Continue
                                             <ChevronRight className="h-5 w-5 ml-1" />
@@ -559,8 +559,8 @@ function BookingContent() {
                             {step === 3 && (
                                 <div>
                                     <div className="text-center mb-8">
-                                        <div className="w-14 h-14 bg-[#1e5128]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <User className="h-7 w-7 text-[#1e5128]" />
+                                        <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                            <User className="h-7 w-7 text-[#1B7640]" />
                                         </div>
                                         <h2 className="text-2xl md:text-3xl font-bold mb-2">Your Details</h2>
                                         <p className="text-gray-500">
@@ -641,9 +641,9 @@ function BookingContent() {
                                             </div>
                                         </div>
 
-                                        <div className="p-4 bg-[#1e5128]/5 border border-[#1e5128]/20 rounded-xl">
+                                        <div className="p-4 bg-[#1B7640]/5 border border-[#1B7640]/20 rounded-xl">
                                             <div className="flex items-center gap-3">
-                                                <MapPin className="h-5 w-5 text-[#1e5128] flex-shrink-0" />
+                                                <MapPin className="h-5 w-5 text-[#1B7640] flex-shrink-0" />
                                                 <p className="text-sm">
                                                     <strong>Service Area:</strong> Currently servicing Penshurst, Hurstville & Bexley only
                                                 </p>
@@ -710,7 +710,7 @@ function BookingContent() {
                                             onClick={() => setStep(4)}
                                             disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.suburb}
                                             size="lg"
-                                            className="px-8 bg-[#1e5128] hover:bg-[#153e1e]"
+                                            className="px-8 bg-[#1B7640] hover:bg-[#153e1e]"
                                         >
                                             Continue
                                             <ChevronRight className="h-5 w-5 ml-1" />
@@ -722,8 +722,8 @@ function BookingContent() {
                             {step === 4 && (
                                 <form onSubmit={handleSubmit}>
                                     <div className="text-center mb-8">
-                                        <div className="w-14 h-14 bg-[#1e5128]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <CheckCircle className="h-7 w-7 text-[#1e5128]" />
+                                        <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                            <CheckCircle className="h-7 w-7 text-[#1B7640]" />
                                         </div>
                                         <h2 className="text-2xl md:text-3xl font-bold mb-2">
                                             Review & {isPaidService ? "Pay" : "Confirm"}
@@ -735,13 +735,13 @@ function BookingContent() {
 
                                     <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-100">
                                         <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                                            <Sparkles className="h-5 w-5 text-[#1e5128]" />
+                                            <Sparkles className="h-5 w-5 text-[#1B7640]" />
                                             Booking Summary
                                         </h3>
                                         <div className="space-y-4">
                                             <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1e5128]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <Car className="h-5 w-5 text-[#1e5128]" />
+                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <Car className="h-5 w-5 text-[#1B7640]" />
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-gray-500">Service</p>
@@ -750,8 +750,8 @@ function BookingContent() {
                                             </div>
 
                                             <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1e5128]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <CalendarIcon className="h-5 w-5 text-[#1e5128]" />
+                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <CalendarIcon className="h-5 w-5 text-[#1B7640]" />
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-gray-500">Date & Time</p>
@@ -760,8 +760,8 @@ function BookingContent() {
                                             </div>
 
                                             <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1e5128]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <User className="h-5 w-5 text-[#1e5128]" />
+                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <User className="h-5 w-5 text-[#1B7640]" />
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-gray-500">Contact</p>
@@ -771,8 +771,8 @@ function BookingContent() {
                                             </div>
 
                                             <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1e5128]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <MapPin className="h-5 w-5 text-[#1e5128]" />
+                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <MapPin className="h-5 w-5 text-[#1B7640]" />
                                                 </div>
                                                 <div>
                                                     <p className="text-sm text-gray-500">Pickup Location</p>
@@ -780,12 +780,12 @@ function BookingContent() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center justify-between p-4 bg-[#1e5128]/10 rounded-xl border-2 border-[#1e5128]/20">
+                                            <div className="flex items-center justify-between p-4 bg-[#1B7640]/10 rounded-xl border-2 border-[#1B7640]/20">
                                                 <div className="flex items-center gap-3">
-                                                    <CreditCard className="h-5 w-5 text-[#1e5128]" />
+                                                    <CreditCard className="h-5 w-5 text-[#1B7640]" />
                                                     <span className="font-semibold">Total Price</span>
                                                 </div>
-                                                <span className="text-xl font-bold text-[#1e5128]">{selectedService?.price}</span>
+                                                <span className="text-xl font-bold text-[#1B7640]">{selectedService?.price}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -807,11 +807,11 @@ function BookingContent() {
                                             type="checkbox"
                                             checked={formData.termsAccepted}
                                             onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
-                                            className="mt-1 h-4 w-4 rounded border-[#1e5128] text-[#1e5128] focus:ring-[#1e5128]"
+                                            className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
                                             required
                                         />
                                         <span className="text-sm text-gray-500 leading-relaxed">
-                                            I agree to the <Link href="/terms" className="text-[#1e5128] font-medium hover:underline">Terms & Conditions</Link> and
+                                            I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms & Conditions</Link> and
                                             understand that all lessons are conducted in automatic transmission vehicles only.
                                             I consent to Marvel Driving contacting me regarding this booking.
                                         </span>
@@ -840,7 +840,7 @@ function BookingContent() {
                                             type="submit"
                                             size="lg"
                                             disabled={!formData.termsAccepted || isSubmitting}
-                                            className="w-full text-lg py-6 bg-[#1e5128] hover:bg-[#153e1e]"
+                                            className="w-full text-lg py-6 bg-[#1B7640] hover:bg-[#153e1e]"
                                         >
                                             {isSubmitting ? (
                                                 <>
@@ -872,7 +872,7 @@ function BookingContent() {
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
                                         transition={{ type: "spring", duration: 0.6 }}
-                                        className="w-24 h-24 bg-gradient-to-br from-[#1e5128] to-[#2a7b3c] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-[#1e5128]/30"
+                                        className="w-24 h-24 bg-gradient-to-br from-[#1B7640] to-[#2a7b3c] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-[#1B7640]/30"
                                     >
                                         <CheckCircle className="h-14 w-14 text-white" />
                                     </motion.div>
@@ -884,7 +884,7 @@ function BookingContent() {
 
                                     <div className="bg-gray-50 rounded-2xl p-6 mb-8 text-left">
                                         <h3 className="font-semibold mb-4 flex items-center gap-2">
-                                            <Clock className="h-5 w-5 text-[#1e5128]" />
+                                            <Clock className="h-5 w-5 text-[#1B7640]" />
                                             What happens next?
                                         </h3>
                                         <ol className="space-y-3">
@@ -895,7 +895,7 @@ function BookingContent() {
                                                 "Be ready at your pickup location on time"
                                             ].map((item, i) => (
                                                 <li key={i} className="flex items-start gap-3">
-                                                    <span className="flex-shrink-0 w-6 h-6 bg-[#1e5128]/10 rounded-full flex items-center justify-center text-xs font-bold text-[#1e5128]">
+                                                    <span className="flex-shrink-0 w-6 h-6 bg-[#1B7640]/10 rounded-full flex items-center justify-center text-xs font-bold text-[#1B7640]">
                                                         {i + 1}
                                                     </span>
                                                     <span className="text-gray-500">{item}</span>
@@ -905,7 +905,7 @@ function BookingContent() {
                                     </div>
 
                                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                        <Button asChild size="lg" className="bg-[#1e5128] hover:bg-[#153e1e]">
+                                        <Button asChild size="lg" className="bg-[#1B7640] hover:bg-[#153e1e]">
                                             <Link href="/">Return Home</Link>
                                         </Button>
                                         <Button variant="outline" asChild size="lg">
@@ -918,15 +918,15 @@ function BookingContent() {
 
                         <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
                             <div className="flex items-center gap-2">
-                                <Shield className="h-4 w-4 text-[#1e5128]" />
+                                <Shield className="h-4 w-4 text-[#1B7640]" />
                                 <span>Secure Payments</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <CheckCircle className="h-4 w-4 text-[#1e5128]" />
+                                <CheckCircle className="h-4 w-4 text-[#1B7640]" />
                                 <span>Instant Confirmation</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Phone className="h-4 w-4 text-[#1e5128]" />
+                                <Phone className="h-4 w-4 text-[#1B7640]" />
                                 <span>24/7 Support</span>
                             </div>
                         </div>
@@ -942,7 +942,7 @@ export default function BookingPage() {
         <div className="min-h-screen">
             <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">
-                    <Loader2 className="h-8 w-8 animate-spin text-[#1e5128]" />
+                    <Loader2 className="h-8 w-8 animate-spin text-[#1B7640]" />
                 </div>
             }>
                 <BookingContent />

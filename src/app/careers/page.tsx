@@ -65,7 +65,7 @@ export default function Careers() {
             <section className="relative py-24 md:py-48 overflow-hidden">
                 <div className="absolute inset-0">
                     <img src="/instructor.jpg" alt="Careers at Marvel Driving" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-[#0a2f14]/85" />
+                    <div className="absolute inset-0 bg-[#0d4a28]/85" />
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
@@ -74,7 +74,7 @@ export default function Careers() {
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-3xl"
                     >
-                        <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0a2f14] rounded-full text-xs font-extrabold mb-8 tracking-wider uppercase">
+                        <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0d4a28] rounded-full text-xs font-extrabold mb-8 tracking-wider uppercase">
                             Join Our Team
                         </span>
                         <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-white tracking-tight">
@@ -85,7 +85,7 @@ export default function Careers() {
                             professionalism, and inclusive education.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
-                            <Button className="bg-white text-[#0a2f14] hover:bg-gray-100 font-extrabold text-lg h-16 px-12 rounded-full shadow-2xl transition-all hover:scale-105" asChild>
+                            <Button className="bg-white text-[#0d4a28] hover:bg-gray-100 font-extrabold text-lg h-16 px-12 rounded-full shadow-2xl transition-all hover:scale-105" asChild>
                                 <a href="#positions">
                                     <Briefcase className="h-5 w-5 mr-3" />
                                     View Open Positions
@@ -130,7 +130,7 @@ export default function Careers() {
                                 transition={{ delay: idx * 0.1 }}
                                 className="p-6 bg-gray-50 rounded-xl"
                             >
-                                <div className="w-12 h-12 bg-[#1e5128] rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                                <div className="w-12 h-12 bg-[#1B7640] rounded-full flex items-center justify-center mx-auto mb-4 text-white">
                                     <item.icon className="h-6 w-6" />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
@@ -157,7 +157,7 @@ export default function Careers() {
                             >
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                                     <div>
-                                        <h3 className="text-2xl font-bold text-[#1e5128]">{job.title}</h3>
+                                        <h3 className="text-2xl font-bold text-[#1B7640]">{job.title}</h3>
                                         <p className="text-gray-500 font-medium">{job.location} • {job.type}</p>
                                     </div>
                                     <Button asChild>
@@ -251,7 +251,7 @@ export default function Careers() {
                             />
                         </div>
 
-                        <Button type="submit" className="w-full bg-[#1e5128] hover:bg-[#153e1e]" disabled={isSubmitting}>
+                        <Button type="submit" className="w-full bg-[#1B7640] hover:bg-[#153e1e]" disabled={isSubmitting}>
                             {isSubmitting ? "Sending..." : "Submit Application"}
                         </Button>
                     </form>

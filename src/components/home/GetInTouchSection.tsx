@@ -46,7 +46,7 @@ export function GetInTouchSection() {
                 <div className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
 
                     {/* Left Panel - Green */}
-                    <div className="bg-[#1e5128] p-10 lg:p-12 lg:w-[40%] text-white flex flex-col justify-between relative overflow-hidden">
+                    <div className="bg-[#1B7640] p-10 lg:p-12 lg:w-[40%] text-white flex flex-col justify-between relative overflow-hidden">
 
                         {/* Background Pattern */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
@@ -95,7 +95,7 @@ export function GetInTouchSection() {
                                     <Input
                                         id="fullName"
                                         placeholder="John Smith"
-                                        className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1e5128] focus:border-[#1e5128]"
+                                        className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1B7640] focus:border-[#1B7640]"
                                         value={formData.fullName}
                                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                                         required
@@ -106,7 +106,7 @@ export function GetInTouchSection() {
                                     <Input
                                         id="phone"
                                         placeholder="0400 000 000"
-                                        className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1e5128] focus:border-[#1e5128]"
+                                        className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1B7640] focus:border-[#1B7640]"
                                         value={formData.phoneNumber}
                                         onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                                         required
@@ -120,7 +120,7 @@ export function GetInTouchSection() {
                                     id="email"
                                     type="email"
                                     placeholder="john@example.com"
-                                    className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1e5128] focus:border-[#1e5128]"
+                                    className="bg-gray-50 border-gray-200 h-12 rounded-xl focus:ring-[#1B7640] focus:border-[#1B7640]"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     required
@@ -132,7 +132,7 @@ export function GetInTouchSection() {
                                 <Textarea
                                     id="message"
                                     placeholder="Tell us about your needs..."
-                                    className="bg-gray-50 border-gray-200 min-h-[150px] rounded-xl focus:ring-[#1e5128] focus:border-[#1e5128] resize-none"
+                                    className="bg-gray-50 border-gray-200 min-h-[150px] rounded-xl focus:ring-[#1B7640] focus:border-[#1B7640] resize-none"
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 />

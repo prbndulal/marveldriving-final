@@ -8,7 +8,7 @@ export function DrivingTestPackage() {
     return (
         <section className="py-20 bg-[#f8fafc]">
             <div className="container px-4 md:px-8">
-                <div className="bg-[#1e5128] rounded-[2rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
+                <div className="bg-[#1B7640] rounded-[2rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
                         {/* Left Content */}
                         <motion.div
@@ -22,7 +22,7 @@ export function DrivingTestPackage() {
                                 </div>
                                 <div>
                                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Driving Test Package</h2>
-                                    <div className="text-5xl font-extrabold text-[#fbbf24]">$210</div>
+                                    <div className="text-5xl font-extrabold text-[#fbbf24]">$220</div>
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@ export function DrivingTestPackage() {
 
                             <Button
                                 size="lg"
-                                className="bg-transparent border-2 border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24] hover:text-[#1e5128] font-bold text-lg h-14 px-8 rounded-xl transition-all w-full sm:w-auto"
+                                className="bg-transparent border-2 border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24] hover:text-[#1B7640] font-bold text-lg h-14 px-8 rounded-xl transition-all w-full sm:w-auto"
                                 asChild
                             >
                                 <Link href="/book">

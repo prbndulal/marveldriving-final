@@ -57,8 +57,8 @@ export function TestimonialsMarquee() {
     return (
         <section className="py-24 bg-[#f8fafc] overflow-hidden">
             <div className="container px-4 md:px-8 mb-16 text-center">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a2f14] mb-4">What Our Participants Say</h2>
-                <p className="text-[#1e5128] text-lg font-medium">Don't just take our word for it. Here's what our valued participants have to say.</p>
+                <h2 className="text-4xl md:text-5xl font-extrabold text-[#0d4a28] mb-3">What Our Participants Say</h2>
+                <p className="text-gray-500 text-base">Don't just take our word for it. Here's what our valued participants have to say.</p>
             </div>
 
             <div className="relative">
@@ -76,7 +76,7 @@ export function TestimonialsMarquee() {
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
-                                        <CheckCircle className="h-4 w-4 text-[#1e5128] fill-green-100" />
+                                        <CheckCircle className="h-4 w-4 text-[#1B7640] fill-green-100" />
                                     </div>
                                     <p className="text-gray-500 text-sm">{testimonial.role}</p>
                                 </div>

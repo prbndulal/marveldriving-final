@@ -52,7 +52,7 @@ export default function AdminLogin() {
         <div className="flex min-h-screen items-center justify-center bg-gray-100">
             <div className="w-full max-w-sm rounded-lg border bg-white p-8 shadow-md">
                 <div className="mb-6 text-center">
-                    <h1 className="text-2xl font-bold text-[#1e5128]">Admin Login</h1>
+                    <h1 className="text-2xl font-bold text-[#1B7640]">Admin Login</h1>
                     <p className="text-gray-500">Sign in to manage Marvel Driving</p>
                 </div>
                 <form onSubmit={handleLogin} className="space-y-4">
@@ -78,7 +78,7 @@ export default function AdminLogin() {
                             placeholder="••••••••"
                         />
                     </div>
-                    <Button type="submit" className="w-full bg-[#1e5128] hover:bg-[#153e1e]" disabled={loading}>
+                    <Button type="submit" className="w-full bg-[#1B7640] hover:bg-[#153e1e]" disabled={loading}>
                         {loading ? <Loader2 className="h-4 w-4 animate-spin font-black" /> : "Sign In"}
                     </Button>
                 </form>

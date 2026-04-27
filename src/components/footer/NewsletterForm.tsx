@@ -5,12 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 
-export function NewsletterForm() {
+interface Props {
+    dark?: boolean;
+}
+
+export function NewsletterForm({ dark }: Props) {
     const [email, setEmail] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate submission
         console.log("Newsletter subscription for:", email);
         alert("Thanks for subscribing!");
         setEmail("");
@@ -23,10 +26,10 @@ export function NewsletterForm() {
                 placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-background border-input text-foreground h-10"
+                className={dark ? "bg-white/10 border-white/20 text-white placeholder:text-white/40 h-10" : "bg-background border-input text-foreground h-10"}
                 required
             />
-            <Button type="submit" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground h-10 px-4">
+            <Button type="submit" size="sm" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white h-10 px-4 font-bold">
                 Subscribe
             </Button>
         </form>

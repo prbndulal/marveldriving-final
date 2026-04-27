@@ -29,15 +29,15 @@ export default async function AdminBookings() {
             {/* Header section */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-4xl font-extrabold text-[#0a2f14] tracking-tight mb-2">Bookings</h1>
+                    <h1 className="text-4xl font-extrabold text-[#0d4a28] tracking-tight mb-2">Bookings</h1>
                     <p className="text-gray-500 font-medium italic">Manage all student appointments from PostgreSQL</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="relative group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 group-focus-within:text-[#1e5128] transition-colors" />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 group-focus-within:text-[#1B7640] transition-colors" />
                         <Input 
                             placeholder="Search students..." 
-                            className="pl-12 w-[300px] h-12 bg-white border-gray-100 rounded-2xl shadow-sm focus:ring-2 focus:ring-[#1e5128]/10 transition-all font-medium"
+                            className="pl-12 w-[300px] h-12 bg-white border-gray-100 rounded-2xl shadow-sm focus:ring-2 focus:ring-[#1B7640]/10 transition-all font-medium"
                         />
                     </div>
                     <Button variant="outline" className="h-12 w-12 rounded-2xl border-gray-100 p-0 hover:bg-gray-50 transition-all active:scale-95">
@@ -53,21 +53,21 @@ export default async function AdminBookings() {
                         <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                             <CalendarDays className="h-10 w-10 text-gray-300" />
                         </div>
-                        <h2 className="text-xl font-black text-[#0a2f14] mb-2">No bookings found</h2>
+                        <h2 className="text-xl font-black text-[#0d4a28] mb-2">No bookings found</h2>
                         <p className="text-gray-400 font-medium">Any new bookings from the site will appear here.</p>
                     </Card>
                 ) : (
                     bookings.map((booking) => (
-                        <Card key={booking.id} className="border-0 shadow-[0_10px_40px_rgba(0,0,0,0.03)] rounded-[2.5rem] bg-white overflow-hidden group hover:shadow-xl hover:shadow-[#0a2f14]/5 transition-all duration-500">
+                        <Card key={booking.id} className="border-0 shadow-[0_10px_40px_rgba(0,0,0,0.03)] rounded-[2.5rem] bg-white overflow-hidden group hover:shadow-xl hover:shadow-[#0d4a28]/5 transition-all duration-500">
                             <CardContent className="p-0">
                                 <div className="flex flex-col lg:flex-row lg:items-center">
                                     {/* Left: User Info */}
                                     <div className="p-8 lg:w-1/3 flex items-start gap-6 border-b lg:border-b-0 lg:border-r border-gray-50 bg-gray-50/20">
-                                        <div className="h-16 w-16 rounded-[1.8rem] bg-[#0a2f14] text-[#fbbf24] flex items-center justify-center text-xl font-black shadow-lg shadow-[#0a2f14]/10">
+                                        <div className="h-16 w-16 rounded-[1.8rem] bg-[#0d4a28] text-[#fbbf24] flex items-center justify-center text-xl font-black shadow-lg shadow-[#0d4a28]/10">
                                             {booking.customerName.substring(0, 2).toUpperCase()}
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-black text-[#0a2f14] mb-1">{booking.customerName}</h3>
+                                            <h3 className="text-xl font-black text-[#0d4a28] mb-1">{booking.customerName}</h3>
                                             <div className="flex flex-col gap-1">
                                                 <div className="flex items-center gap-2 text-sm text-gray-400 font-bold">
                                                     <Mail className="h-3 w-3" /> {booking.customerEmail}
@@ -83,18 +83,18 @@ export default async function AdminBookings() {
                                     <div className="p-8 lg:flex-1 grid grid-cols-2 md:grid-cols-4 gap-8">
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Lesson Type</p>
-                                            <p className="font-extrabold text-[#1e5128]">{booking.serviceName}</p>
+                                            <p className="font-extrabold text-[#1B7640]">{booking.serviceName}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Date</p>
-                                            <p className="font-extrabold text-[#0a2f14] flex items-center gap-2">
+                                            <p className="font-extrabold text-[#0d4a28] flex items-center gap-2">
                                                 <CalendarDays className="h-4 w-4 text-[#fbbf24]" />
                                                 {format(new Date(booking.date), 'MMM dd, yyyy')}
                                             </p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Time</p>
-                                            <p className="font-extrabold text-[#0a2f14] flex items-center gap-2">
+                                            <p className="font-extrabold text-[#0d4a28] flex items-center gap-2">
                                                 <Clock className="h-4 w-4 text-[#fbbf24]" />
                                                 {booking.time}
                                             </p>
@@ -113,7 +113,7 @@ export default async function AdminBookings() {
                                     {/* Right: Actions */}
                                     <div className="p-8 lg:w-1/6 flex items-center justify-end gap-3">
                                         <span className={`px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest ${
-                                            booking.status === 'confirmed' ? 'bg-[#1e5128] text-white' : 'bg-amber-500 text-white'
+                                            booking.status === 'confirmed' ? 'bg-[#1B7640] text-white' : 'bg-amber-500 text-white'
                                         }`}>
                                             {booking.status}
                                         </span>

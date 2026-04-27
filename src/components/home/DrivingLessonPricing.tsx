@@ -9,13 +9,13 @@ interface Props {
 
 export function DrivingLessonPricing({ compact }: Props) {
     return (
-        <div className={`bg-[#1e5128] rounded-2xl shadow-xl overflow-hidden text-white flex flex-col h-full relative group`}>
+        <div className={`bg-[#1B7640] rounded-2xl shadow-xl overflow-hidden text-white flex flex-col h-full relative group`}>
             <div className="absolute top-0 right-0 p-6 opacity-10 transform translate-x-1/4 -translate-y-1/4">
                 <Car className="w-32 h-32" />
             </div>
 
             <div className="p-8 pb-0 relative z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fbbf24] text-[#1e5128] rounded-md text-xs font-bold mb-4 uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fbbf24] text-[#1B7640] rounded-md text-xs font-bold mb-4 uppercase tracking-wider">
                     <Car className="h-3 w-3" />
                     Automatic Lessons
                 </div>
@@ -44,7 +44,7 @@ export function DrivingLessonPricing({ compact }: Props) {
                 </ul>
 
                 <div className="mt-auto space-y-4">
-                    <Button className="w-full bg-transparent hover:bg-[#fbbf24] text-[#fbbf24] hover:text-[#1e5128] border-2 border-[#fbbf24] font-bold h-12 transition-all duration-300 group-hover:bg-[#fbbf24] group-hover:text-[#1e5128]" asChild>
+                    <Button className="w-full bg-transparent hover:bg-[#fbbf24] text-[#fbbf24] hover:text-[#1B7640] border-2 border-[#fbbf24] font-bold h-12 transition-all duration-300 group-hover:bg-[#fbbf24] group-hover:text-[#1B7640]" asChild>
                         <Link href="/book">
                             Book Now <ChevronRight className="h-4 w-4 ml-2" />
                         </Link>

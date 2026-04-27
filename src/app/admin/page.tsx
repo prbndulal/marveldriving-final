@@ -47,7 +47,7 @@ export default async function AdminDashboard() {
             change: `${pendingCount} pending`,
             trend: "up",
             icon: CalendarDays,
-            color: "from-emerald-500 to-[#1e5128]",
+            color: "from-emerald-500 to-[#1B7640]",
             id: "bookings"
         },
         {
@@ -83,14 +83,14 @@ export default async function AdminDashboard() {
         <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-4xl font-extrabold text-[#0a2f14] tracking-tight">Dashboard Overview</h1>
+                    <h1 className="text-4xl font-extrabold text-[#0d4a28] tracking-tight">Dashboard Overview</h1>
                     <p className="text-gray-500 font-medium mt-1 uppercase tracking-widest text-[10px]">Marvel Driving School • PostgreSQL Edition</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <Button variant="outline" className="rounded-xl border-gray-200" asChild>
                         <Link href="/">View Site</Link>
                     </Button>
-                    <Button className="rounded-xl bg-[#0a2f14] hover:bg-[#1e5128] shadow-lg shadow-[#0a2f14]/10">
+                    <Button className="rounded-xl bg-[#0d4a28] hover:bg-[#1B7640] shadow-lg shadow-[#0d4a28]/10">
                         <ArrowUpRight className="mr-2 h-4 w-4" /> Export Report
                     </Button>
                 </div>
@@ -109,7 +109,7 @@ export default async function AdminDashboard() {
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-3xl font-extrabold text-[#0a2f14] tracking-tight mb-2">{stat.value}</div>
+                            <div className="text-3xl font-extrabold text-[#0d4a28] tracking-tight mb-2">{stat.value}</div>
                             <div className="flex items-center gap-1">
                                 <span className={`text-sm font-bold ${stat.trend === "up" ? "text-emerald-500" : "text-rose-500"}`}>
                                     {stat.change}
@@ -126,10 +126,10 @@ export default async function AdminDashboard() {
                 <Card className="lg:col-span-4 border-0 shadow-[0_15px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] overflow-hidden">
                     <CardHeader className="flex flex-row items-center justify-between px-8 py-8 border-b border-gray-50 bg-gray-50/30">
                         <div>
-                            <CardTitle className="text-xl font-extrabold text-[#0a2f14] tracking-tight">Recent Bookings</CardTitle>
+                            <CardTitle className="text-xl font-extrabold text-[#0d4a28] tracking-tight">Recent Bookings</CardTitle>
                             <p className="text-sm text-gray-400 font-medium mt-1">Updates from PostgreSQL</p>
                         </div>
-                        <Button variant="ghost" className="rounded-xl font-bold text-[#1e5128]" asChild>
+                        <Button variant="ghost" className="rounded-xl font-bold text-[#1B7640]" asChild>
                             <Link href="/admin/bookings">View All <ChevronRight className="ml-2 h-4 w-4" /></Link>
                         </Button>
                     </CardHeader>
@@ -145,7 +145,7 @@ export default async function AdminDashboard() {
                                                 {booking.customerName.charAt(0)}
                                             </div>
                                             <div>
-                                                <p className="font-extrabold text-[#0a2f14] tracking-tight">{booking.customerName}</p>
+                                                <p className="font-extrabold text-[#0d4a28] tracking-tight">{booking.customerName}</p>
                                                 <div className="flex items-center gap-2 mt-0.5">
                                                     <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">{booking.serviceName}</span>
                                                     <span className="text-gray-200">|</span>
@@ -171,7 +171,7 @@ export default async function AdminDashboard() {
                 {/* Recent Enquiries List */}
                 <Card className="lg:col-span-3 border-0 shadow-[0_15px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] overflow-hidden">
                     <CardHeader className="px-8 py-8 border-b border-gray-50 bg-gray-50/30">
-                        <CardTitle className="text-xl font-extrabold text-[#0a2f14] tracking-tight">New enquiries</CardTitle>
+                        <CardTitle className="text-xl font-extrabold text-[#0d4a28] tracking-tight">New enquiries</CardTitle>
                         <p className="text-sm text-gray-400 font-medium mt-1">Pending student responses</p>
                     </CardHeader>
                     <CardContent className="px-6 py-4">
@@ -180,13 +180,13 @@ export default async function AdminDashboard() {
                                 <div className="py-20 text-center text-gray-500 font-bold italic">No pending enquiries.</div>
                             ) : (
                                 recentEnquiries.map((enquiry) => (
-                                    <div key={enquiry.id} className="relative p-6 rounded-3xl border border-gray-50 hover:border-[#1e5128]/20 hover:shadow-lg hover:shadow-[#1e5128]/5 transition-all group overflow-hidden bg-white">
+                                    <div key={enquiry.id} className="relative p-6 rounded-3xl border border-gray-50 hover:border-[#1B7640]/20 hover:shadow-lg hover:shadow-[#1B7640]/5 transition-all group overflow-hidden bg-white">
                                         <div className="flex justify-between items-start mb-3">
                                             <div className="flex items-center gap-3">
                                                 <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
-                                                    <Users className="h-4 w-4 text-[#1e5128]" />
+                                                    <Users className="h-4 w-4 text-[#1B7640]" />
                                                 </div>
-                                                <span className="font-extrabold text-[#0a2f14]">{enquiry.name}</span>
+                                                <span className="font-extrabold text-[#0d4a28]">{enquiry.name}</span>
                                             </div>
                                             <span className="text-[10px] font-bold text-gray-300 flex items-center gap-1">
                                                 <Clock className="h-3 w-3" /> {format(new Date(enquiry.createdAt), 'HH:mm')}
@@ -194,7 +194,7 @@ export default async function AdminDashboard() {
                                         </div>
                                         <p className="text-sm text-gray-600 line-clamp-2 italic font-medium">"{enquiry.message}"</p>
                                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-50">
-                                            <span className="text-[10px] font-extrabold uppercase text-[#1e5128] tracking-widest">{enquiry.type}</span>
+                                            <span className="text-[10px] font-extrabold uppercase text-[#1B7640] tracking-widest">{enquiry.type}</span>
                                         </div>
                                     </div>
                                 ))

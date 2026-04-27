@@ -58,7 +58,7 @@ export default function ForgotPasswordPage() {
                     <div className="p-8 md:p-12">
                         {/* Header */}
                         <div className="text-center mb-10">
-                            <h1 className="text-3xl font-extrabold text-[#0a2f14] mb-3 tracking-tight">
+                            <h1 className="text-3xl font-extrabold text-[#0d4a28] mb-3 tracking-tight">
                                 Reset Password
                             </h1>
                             <p className="text-gray-500 font-medium">
@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
-                                            className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 focus:bg-white focus:ring-2 focus:ring-[#1e5128]/20 transition-all text-base"
+                                            className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 focus:bg-white focus:ring-2 focus:ring-[#1B7640]/20 transition-all text-base"
                                         />
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ export default function ForgotPasswordPage() {
                                 <Button 
                                     type="submit" 
                                     disabled={isLoading}
-                                    className="w-full h-14 bg-[#1e5128] hover:bg-[#0a2f14] text-white rounded-2xl font-extrabold text-lg shadow-xl shadow-[#1e5128]/10 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 mt-4"
+                                    className="w-full h-14 bg-[#1B7640] hover:bg-[#0d4a28] text-white rounded-2xl font-extrabold text-lg shadow-xl shadow-[#1B7640]/10 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 mt-4"
                                 >
                                     {isLoading ? (
                                         <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -106,7 +106,7 @@ export default function ForgotPasswordPage() {
                                     <Mail className="h-10 w-10" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-xl font-bold text-[#0a2f14]">Check your email</h3>
+                                    <h3 className="text-xl font-bold text-[#0d4a28]">Check your email</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">
                                         We've sent a link to **{email}**. Click it to securely reset your password.
                                     </p>
@@ -124,7 +124,7 @@ export default function ForgotPasswordPage() {
                         <div className="pt-8 border-t border-gray-100 text-center mt-8">
                             <Link 
                                 href="/login" 
-                                className="inline-flex items-center gap-2 text-[#1e5128] font-extrabold hover:text-[#0a2f14] transition-colors"
+                                className="inline-flex items-center gap-2 text-[#1B7640] font-extrabold hover:text-[#0d4a28] transition-colors"
                             >
                                 <ArrowLeft className="h-4 w-4" />
                                 <span>Back to login</span>

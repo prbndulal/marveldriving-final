@@ -68,7 +68,7 @@ export default function LoginPage() {
                     <div className="p-8 md:p-12">
                         {/* Header */}
                         <div className="text-center mb-10">
-                            <h1 className="text-3xl font-extrabold text-[#0a2f14] mb-3 tracking-tight">
+                            <h1 className="text-3xl font-extrabold text-[#0d4a28] mb-3 tracking-tight">
                                 Welcome Back
                             </h1>
                             <p className="text-gray-500 font-medium">
@@ -90,7 +90,7 @@ export default function LoginPage() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
-                                        className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 focus:bg-white focus:ring-2 focus:ring-[#1e5128]/20 transition-all text-base"
+                                        className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 focus:bg-white focus:ring-2 focus:ring-[#1B7640]/20 transition-all text-base"
                                     />
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ export default function LoginPage() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
-                                        className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 pr-12 focus:bg-white focus:ring-2 focus:ring-[#1e5128]/20 transition-all text-base font-mono"
+                                        className="h-14 bg-gray-50 border-gray-100 rounded-2xl px-5 pr-12 focus:bg-white focus:ring-2 focus:ring-[#1B7640]/20 transition-all text-base font-mono"
                                     />
                                     <button
                                         type="button"
@@ -122,7 +122,7 @@ export default function LoginPage() {
                             <div className="flex justify-center">
                                 <Link 
                                     href="/forgot-password" 
-                                    className="text-sm font-bold text-[#1e5128] hover:text-[#0a2f14] transition-colors"
+                                    className="text-sm font-bold text-[#1B7640] hover:text-[#0d4a28] transition-colors"
                                 >
                                     Forgot your password?
                                 </Link>
@@ -131,7 +131,7 @@ export default function LoginPage() {
                             <Button 
                                 type="submit" 
                                 disabled={isLoading}
-                                className="w-full h-14 bg-[#1e5128] hover:bg-[#0a2f14] text-white rounded-2xl font-extrabold text-lg shadow-xl shadow-[#1e5128]/10 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                                className="w-full h-14 bg-[#1B7640] hover:bg-[#0d4a28] text-white rounded-2xl font-extrabold text-lg shadow-xl shadow-[#1B7640]/10 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
                             >
                                 {isLoading ? (
                                     <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -151,7 +151,7 @@ export default function LoginPage() {
                                         sessionStorage.setItem('admin_bypass_email', 'admin@marveldriving.com.au');
                                         window.location.href = '/admin';
                                     }}
-                                    className="w-full h-12 border-[#1e5128]/20 bg-[#1e5128]/5 text-[#1e5128] font-black text-sm rounded-2xl hover:bg-[#1e5128]/10 transition-all flex items-center justify-center gap-2"
+                                    className="w-full h-12 border-[#1B7640]/20 bg-[#1B7640]/5 text-[#1B7640] font-black text-sm rounded-2xl hover:bg-[#1B7640]/10 transition-all flex items-center justify-center gap-2"
                                 >
                                     <CheckCircle2 className="h-4 w-4" />
                                     Instant Admin Access (Test Mode)
@@ -167,7 +167,7 @@ export default function LoginPage() {
                                     Don't have an account?{" "}
                                     <Link 
                                         href="/signup" 
-                                        className="text-[#1e5128] font-extrabold hover:text-[#0a2f14] transition-colors"
+                                        className="text-[#1B7640] font-extrabold hover:text-[#0d4a28] transition-colors"
                                     >
                                         Sign up
                                     </Link>
@@ -180,7 +180,7 @@ export default function LoginPage() {
                 <div className="text-center mt-8">
                     <Link 
                         href="/" 
-                        className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1e5128] font-bold transition-colors group"
+                        className="inline-flex items-center gap-2 text-gray-400 hover:text-[#1B7640] font-bold transition-colors group"
                     >
                         <span>Back to homepage</span>
                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

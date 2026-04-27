@@ -32,7 +32,7 @@ export function HeroCarousel() {
                     className="w-full h-full object-cover"
                 />
             </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1e5128]/95 via-[#1e5128]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B7640]/95 via-[#1B7640]/70 to-transparent" />
             
             {/* Carousel Indicators */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">

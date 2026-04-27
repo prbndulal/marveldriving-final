@@ -122,7 +122,7 @@ export function NDISEnquiryForm() {
                 />
             </div>
 
-            <Button type="submit" className="w-full bg-[#1e5128] hover:bg-[#153e1e]" disabled={isSubmitting}>
+            <Button type="submit" className="w-full bg-[#1B7640] hover:bg-[#153e1e]" disabled={isSubmitting}>
                 {isSubmitting ? (
                     <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />

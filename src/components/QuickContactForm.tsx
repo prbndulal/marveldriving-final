@@ -14,7 +14,7 @@ export function QuickContactForm() {
     };
 
     return (
-        <section className="py-16 bg-[#1e5128] text-white">
+        <section className="py-16 bg-[#1B7640] text-white">
             <div className="container px-4 md:px-8 text-center max-w-2xl mx-auto">
                 <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
                 <p className="text-white/80 mb-8">
@@ -29,7 +29,7 @@ export function QuickContactForm() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <Button type="submit" className="bg-[#fbbf24] hover:bg-[#f59e0b] text-[#1e5128] font-bold h-12 px-8">
+                    <Button type="submit" className="bg-[#fbbf24] hover:bg-[#f59e0b] text-[#1B7640] font-bold h-12 px-8">
                         Let's Talk <Send className="ml-2 h-4 w-4" />
                     </Button>
                 </form>

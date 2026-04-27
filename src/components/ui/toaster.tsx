@@ -19,7 +19,7 @@ export function Toaster() {
                         className={`pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-2xl border p-5 shadow-2xl transition-all ${
                             toast.variant === "destructive"
                                 ? "bg-red-50 border-red-100 text-red-900"
-                                : "bg-white border-gray-100 text-[#0a2f14]"
+                                : "bg-white border-gray-100 text-[#0d4a28]"
                         }`}
                     >
                         <div className="flex items-start gap-4">

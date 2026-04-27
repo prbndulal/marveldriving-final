@@ -27,8 +27,8 @@ const navLinks = [
 ];
 
 const serviceLinks = [
-    { href: "/ndis-services", label: "NDIS Services" },
     { href: "/automatic-lessons", label: "Automatic Lessons" },
+    { href: "/ndis-services", label: "NDIS Services" },
     { href: "/dkt", label: "DKT - Driver Knowledge Test" },
     { href: "https://www.service.nsw.gov.au/transaction/book-a-driver-or-rider-licence-test", label: "Online Test Booking", external: true },
     { href: "/careers", label: "Careers" },
@@ -79,16 +79,16 @@ export function Navbar() {
 
                     {/* Centered Logo */}
                     <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-                        <img src={logo} alt="Marvel Driving Logo" className="h-16 w-auto object-contain" />
+                        <img src={logo} alt="Marvel Driving Logo" className="h-20 w-auto object-contain" />
                     </Link>
 
                     {/* Phone Icon */}
                     <a
                         href="tel:0431306570"
-                        className="p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors"
+                        className="p-2 rounded-lg text-[#1B7640] hover:bg-[#1B7640]/10 transition-colors"
                         aria-label="Call us"
                     >
-                        <Phone className="h-6 w-6" />
+                        <Phone className="h-7 w-7 text-[#1B7640] fill-[#1B7640]/20" />
                     </a>
                 </div>
 
@@ -101,23 +101,23 @@ export function Navbar() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="fixed inset-0 top-[64px] bg-black/50 z-40"
+                                className="fixed inset-0 top-[76px] bg-black/50 z-40"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             />
                             <motion.div
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="fixed top-[64px] left-0 right-0 z-50 overflow-hidden bg-background max-h-[calc(100vh-64px)] overflow-y-auto border-b shadow-lg"
+                                className="relative z-50 overflow-hidden bg-background max-h-[calc(100vh-76px)] overflow-y-auto"
                             >
                                 {/* Quick Action Buttons */}
                                 <div className="px-4 pt-4 pb-2 space-y-2">
-                                    <Button variant="default" asChild className="w-full text-base py-6 bg-[#dc2626] hover:bg-[#b91c1c] text-white">
+                                    <Button asChild className="w-full text-base py-3 bg-[#dc2626] hover:bg-[#b91c1c] text-white">
                                         <Link href="/book" onClick={() => setIsMobileMenuOpen(false)}>
                                             Book Driving Lesson
                                         </Link>
                                     </Button>
-                                    <Button variant="outline" asChild className="w-full text-base py-6 border-[#1e5128] text-[#1e5128] hover:bg-[#1e5128] hover:text-white">
+                                    <Button variant="outline" asChild className="w-full text-base py-3 border-[#1B7640] text-[#1B7640] hover:bg-[#1B7640] hover:text-white">
                                         <Link href="/ndis-services" onClick={() => setIsMobileMenuOpen(false)}>
                                             NDIS Services
                                         </Link>
@@ -133,7 +133,7 @@ export function Navbar() {
                                             href="/"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -146,7 +146,7 @@ export function Navbar() {
                                             href="/about"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/about"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -158,7 +158,7 @@ export function Navbar() {
                                         <button
                                             onClick={() => setIsServicesOpen(!isServicesOpen)}
                                             className={`w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all ${isServiceActive
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -196,7 +196,7 @@ export function Navbar() {
                                                                         setIsServicesOpen(false);
                                                                     }}
                                                                     className={`block px-4 py-2 rounded-lg font-medium transition-all text-sm ${pathname === link.href
-                                                                            ? "bg-[#1e5128]/10 text-[#1e5128] font-bold"
+                                                                            ? "bg-[#1B7640]/10 text-[#1B7640] font-bold"
                                                                             : "text-foreground hover:bg-secondary"
                                                                         }`}
                                                                 >
@@ -215,7 +215,7 @@ export function Navbar() {
                                             href="/gallery"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/gallery"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -228,7 +228,7 @@ export function Navbar() {
                                             href="/blog"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/blog"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -241,7 +241,7 @@ export function Navbar() {
                                             href="/faq"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/faq"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -254,7 +254,7 @@ export function Navbar() {
                                             href="/contact"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/contact"
-                                                    ? "bg-[#1e5128] text-white"
+                                                    ? "bg-[#1B7640] text-white"
                                                     : "text-foreground hover:bg-secondary"
                                                 }`}
                                         >
@@ -273,7 +273,7 @@ export function Navbar() {
                                                                 <Link
                                                                     href="/admin"
                                                                     onClick={() => setIsMobileMenuOpen(false)}
-                                                                    className="block px-4 py-3 rounded-lg font-medium transition-all text-[#1e5128] hover:bg-secondary"
+                                                                    className="block px-4 py-3 rounded-lg font-medium transition-all text-[#1B7640] hover:bg-secondary"
                                                                 >
                                                                     Admin Dashboard
                                                                 </Link>
@@ -315,7 +315,7 @@ export function Navbar() {
             {/* Desktop Header */}
             <div className="hidden lg:block">
                 {/* Top bar */}
-                <div className="bg-[#1e5128] text-white py-2">
+                <div className="bg-[#1B7640] text-white py-2">
                     <div className="container px-4 flex justify-between items-center text-sm font-medium">
                         <div className="flex items-center gap-6">
                             <a href="tel:0431306570" className="flex items-center gap-2 hover:text-[#fbbf24] transition-colors">
@@ -331,18 +331,18 @@ export function Navbar() {
                 <nav className="bg-white border-b">
                     <div className="container px-4 py-4 flex items-center justify-between">
                         <Link href="/" className="flex items-center gap-3">
-                            <img src={logo} alt="Marvel Driving Logo" className="h-[72px] w-auto object-contain" />
+                            <img src={logo} alt="Marvel Driving Logo" className="h-24 w-auto object-contain" />
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <ul className="flex items-center gap-1 xl:gap-2">
+                        <ul className="flex items-center gap-1">
                             {navLinks.map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className={`px-3 xl:px-4 py-2 rounded-full font-medium text-sm xl:text-base transition-all duration-300 ${pathname === link.href
-                                                ? "bg-[#1e5128] text-white shadow-md"
-                                                : "text-gray-700 hover:bg-gray-100 hover:text-[#1e5128]"
+                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${pathname === link.href
+                                                ? "bg-[#1B7640] text-white"
+                                                : "text-gray-700 hover:bg-[#f8fafc] hover:text-[#1B7640]"
                                             }`}
                                     >
                                         {link.label}
@@ -354,33 +354,33 @@ export function Navbar() {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <button
-                                            className={`flex items-center gap-1 px-3 xl:px-4 py-2 rounded-full font-medium text-sm xl:text-base transition-all duration-300 ${isServiceActive
-                                                    ? "bg-[#1e5128] text-white shadow-md"
-                                                    : "text-gray-700 hover:bg-gray-100 hover:text-[#1e5128]"
+                                            className={`flex items-center gap-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isServiceActive
+                                                    ? "bg-[#1B7640] text-white"
+                                                    : "text-gray-700 hover:bg-[#f8fafc] hover:text-[#1B7640]"
                                                 }`}
                                         >
                                             Our Services
                                             <ChevronDown className="h-4 w-4" />
                                         </button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" className="w-64 bg-white border border-gray-100 shadow-xl rounded-xl p-2 z-50">
+                                    <DropdownMenuContent align="end" className="w-56 bg-white border border-gray-100 z-50">
                                         {serviceLinks.map((link) => (
-                                            <DropdownMenuItem key={link.href} asChild className="focus:bg-green-50 rounded-lg">
+                                            <DropdownMenuItem key={link.href} asChild>
                                                 {link.external ? (
                                                     <a
                                                         href={link.href}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="w-full cursor-pointer px-3 py-2.5 font-medium text-gray-700"
+                                                        className="w-full cursor-pointer"
                                                     >
                                                         {link.label}
                                                     </a>
                                                 ) : (
                                                     <Link
                                                         href={link.href}
-                                                        className={`w-full cursor-pointer px-3 py-2.5 font-medium ${pathname === link.href
-                                                                ? "bg-[#1e5128]/10 text-[#1e5128]"
-                                                                : "text-gray-700"
+                                                        className={`w-full cursor-pointer ${pathname === link.href
+                                                                ? "bg-[#1B7640]/10 text-[#1B7640] font-semibold"
+                                                                : ""
                                                             }`}
                                                     >
                                                         {link.label}
@@ -394,13 +394,13 @@ export function Navbar() {
                         </ul>
 
                         {/* Auth & CTA Buttons */}
-                        <div className="flex items-center gap-3 ml-4">
+                        <div className="flex items-center gap-3">
                             {!isLoading && (
                                 <>
                                     {user ? (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
-                                                <Button variant="outline" size="sm" className="gap-2 border-green-700 text-green-700 hover:bg-green-50">
+                                                <Button variant="outline" size="sm" className="gap-2">
                                                     <User className="h-4 w-4" />
                                                     Account
                                                 </Button>
@@ -424,13 +424,13 @@ export function Navbar() {
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     ) : (
-                                        <Button variant="outline" className="hidden xl:flex border-green-700 text-green-700 hover:bg-green-50 font-bold px-6 border-2" asChild>
+                                        <Button variant="outline" size="sm" asChild>
                                             <Link href="/login">Sign In</Link>
                                         </Button>
                                     )}
                                 </>
                             )}
-                            <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-6 py-5 rounded-lg shadow-md transition-transform hover:scale-105" asChild>
+                            <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-6 rounded-lg shadow-md" asChild>
                                 <Link href="/book">Book Online</Link>
                             </Button>
                         </div>

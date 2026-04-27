@@ -50,7 +50,7 @@ export default function DKT() {
             <section className="relative py-24 md:py-48 overflow-hidden">
                 <div className="absolute inset-0">
                     <img src="/hero-dashboard.jpg" alt="DKT Study" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-[#0a2f14]/85" />
+                    <div className="absolute inset-0 bg-[#0d4a28]/85" />
                 </div>
                 <div className="container mx-auto px-4 relative z-10">
                     <motion.div
@@ -58,7 +58,7 @@ export default function DKT() {
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-3xl"
                     >
-                        <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0a2f14] rounded-full text-xs font-extrabold mb-8 tracking-wider uppercase">
+                        <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0d4a28] rounded-full text-xs font-extrabold mb-8 tracking-wider uppercase">
                             Get Your Learner's Licence
                         </span>
                         <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-white tracking-tight">
@@ -69,7 +69,7 @@ export default function DKT() {
                             We help you prepare and pass with confidence.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
-                            <Button className="bg-white text-[#0a2f14] hover:bg-gray-100 font-extrabold text-lg h-16 px-12 rounded-full shadow-2xl transition-all hover:scale-105" asChild>
+                            <Button className="bg-white text-[#0d4a28] hover:bg-gray-100 font-extrabold text-lg h-16 px-12 rounded-full shadow-2xl transition-all hover:scale-105" asChild>
                                 <Link href="/book">
                                     <Car className="h-5 w-5 mr-3" />
                                     Book Driving Lessons
@@ -104,7 +104,7 @@ export default function DKT() {
                                 41 correct answers to pass. You'll have plenty of time to complete the test.
                             </p>
                             <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-                                <h4 className="font-semibold mb-3 flex items-center gap-2 text-[#1e5128]">
+                                <h4 className="font-semibold mb-3 flex items-center gap-2 text-[#1B7640]">
                                     <Clock className="h-5 w-5" />
                                     Test Details
                                 </h4>
@@ -127,7 +127,7 @@ export default function DKT() {
                                 <div className="grid grid-cols-1 gap-3">
                                     {dktTopics.map((topic) => (
                                         <div key={topic} className="flex items-center gap-3">
-                                            <CheckCircle className="h-5 w-5 text-[#1e5128] flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0" />
                                             <span className="text-gray-700">{topic}</span>
                                         </div>
                                     ))}
@@ -155,13 +155,13 @@ export default function DKT() {
                             This comprehensive guide covers all the road rules you need to know.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <Button className="bg-[#1e5128] hover:bg-[#153e1e] text-white h-14 px-8 text-lg font-bold" asChild>
+                            <Button className="bg-[#1B7640] hover:bg-[#153e1e] text-white h-14 px-8 text-lg font-bold" asChild>
                                 <a href="https://www.nsw.gov.au/driving-boating-and-transport/roads-safety-and-rules/road-user-handbook" target="_blank" rel="noopener noreferrer">
                                     <Download className="h-5 w-5 mr-2" />
                                     View Handbook
                                 </a>
                             </Button>
-                            <Button variant="outline" className="border-[#1e5128] text-[#1e5128] hover:bg-green-50 h-14 px-8 text-lg font-bold" asChild>
+                            <Button variant="outline" className="border-[#1B7640] text-[#1B7640] hover:bg-green-50 h-14 px-8 text-lg font-bold" asChild>
                                 <a href="https://www.service.nsw.gov.au/transaction/driver-knowledge-test-dkt" target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="h-5 w-5 mr-2" />
                                     Book Test Online
@@ -197,10 +197,10 @@ export default function DKT() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="p-6 bg-white rounded-xl shadow-md border border-gray-100 group hover:border-[#1e5128]/50 transition-colors"
+                                className="p-6 bg-white rounded-xl shadow-md border border-gray-100 group hover:border-[#1B7640]/50 transition-colors"
                             >
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 bg-[#1e5128] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <div className="w-12 h-12 bg-[#1B7640] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                                         <step.icon className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
@@ -232,7 +232,7 @@ export default function DKT() {
                             complete 120 hours of supervised driving (including 20 hours at night) before
                             you can take your driving test. Marvel Driving is here to help you every step of the way!
                         </p>
-                        <Button className="bg-[#1e5128] hover:bg-[#153e1e] text-white font-bold h-14 px-8 text-lg" asChild>
+                        <Button className="bg-[#1B7640] hover:bg-[#153e1e] text-white font-bold h-14 px-8 text-lg" asChild>
                             <Link href="/book">
                                 Start Your Driving Lessons
                                 <ChevronRight className="h-5 w-5 ml-2" />
@@ -243,7 +243,7 @@ export default function DKT() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 bg-[#1e5128]">
+            <section className="py-20 bg-[#1B7640]">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

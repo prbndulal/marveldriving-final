@@ -36,7 +36,7 @@ function Calendar({
         month_grid: "w-full border-collapse space-y-1",
         weekdays: "flex justify-between",
         weekday:
-          "text-[#1e5128] rounded-md w-9 font-bold text-[0.8rem] text-center",
+          "text-[#1B7640] rounded-md w-9 font-bold text-[0.8rem] text-center",
         week: "flex w-full mt-2 justify-between",
         day: cn(
           buttonVariants({ variant: "ghost" }),
@@ -44,7 +44,7 @@ function Calendar({
         ),
         range_end: "day-range-end",
         selected:
-          "bg-[#1e5128] text-white hover:bg-[#1e5128]/90 hover:text-white focus:bg-[#1e5128] focus:text-white",
+          "bg-[#1B7640] text-white hover:bg-[#1B7640]/90 hover:text-white focus:bg-[#1B7640] focus:text-white",
         today: "bg-gray-100 text-gray-900",
         outside:
           "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",

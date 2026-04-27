@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Shield, Award, Clock, Car, Users, ChevronRight, ArrowRight, Home as HomeIcon, MapPin } from "lucide-react";
+import { Shield, Award, Clock, Car, Users, ChevronRight, Home as HomeIcon, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ServiceAreaMarquee } from "@/components/ServiceAreaMarquee";
 import { GetInTouchSection } from "@/components/home/GetInTouchSection";
@@ -13,8 +13,25 @@ import { DrivingLessonPricing } from "@/components/home/DrivingLessonPricing";
 import { P1LicenceGuide } from "@/components/home/P1LicenceGuide";
 import { TestimonialsMarquee } from "@/components/home/TestimonialsMarquee";
 
-// Static asset import not available, using placeholder or public path
-const ndisImage = "/slider-2.jpg"; // Using an available image as placeholder matching the context
+const ndisImage = "/slider-2.jpg";
+
+const trustIndicators = [
+  {
+    icon: Shield,
+    title: "NDIS Registered",
+    description: "Fully registered and compliant NDIS provider"
+  },
+  {
+    icon: Award,
+    title: "Professional Team",
+    description: "Highly experienced, compassionate and professionally trained staff"
+  },
+  {
+    icon: Clock,
+    title: "Reliable Service",
+    description: "Safe, punctual and dependable support you can count on"
+  }
+];
 
 const services = [
   {
@@ -22,28 +39,28 @@ const services = [
     title: "Driving Lessons & Support",
     description: "Beginner automatic driving lessons at $65/hour with patient, supportive instructors.",
     link: "/automatic-lessons",
-    color: "bg-[#0a2f14]/10 text-[#0a2f14]"
+    color: "bg-[#1B7640]"
   },
   {
     icon: MapPin,
     title: "Transport Services",
-    description: "Safe, reliable transport to medical appointments, community outings & social activities.",
+    description: "Safe, reliable transport to appointments, therapies, work, education and community activities.",
     link: "/ndis-services",
-    color: "bg-[#0a2f14]/10 text-[#0a2f14]"
+    color: "bg-[#dc2626]"
+  },
+  {
+    icon: HomeIcon,
+    title: "Daily Living Support",
+    description: "Assistance with personal activities, daily tasks and routine management to encourage independence.",
+    link: "/ndis-services",
+    color: "bg-[#d97706]"
   },
   {
     icon: Users,
-    title: "Daily Living Support",
-    description: "Supporting independence at home and in the community with personal care & daily tasks.",
+    title: "Community Participation",
+    description: "Support to engage in social, recreational and community activities, building confidence and skills.",
     link: "/ndis-services",
-    color: "bg-[#0a2f14]/10 text-[#0a2f14]"
-  },
-  {
-    icon: Shield,
-    title: "Safe & Supportive",
-    description: "NDIS registered provider committed to choice, control and community for all participants.",
-    link: "/ndis-services",
-    color: "bg-[#0a2f14]/10 text-[#0a2f14]"
+    color: "bg-[#1B7640]"
   }
 ];
 
@@ -55,6 +72,19 @@ const whyChooseUs = [
   "Respectful, inclusive and culturally diverse care",
   "Affordable and flexible support options"
 ];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } }
+};
 
 export default function Home() {
   return (
@@ -68,85 +98,68 @@ export default function Home() {
 
         <div className="container relative z-10 py-20 px-4 md:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
             className="max-w-3xl text-white"
           >
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="inline-block px-4 py-2 bg-[#fbbf24] text-[#1e5128] rounded-full text-sm font-bold mb-6 tracking-wide"
-            >
+            <motion.span variants={staggerItem} className="inline-block px-4 py-2 bg-[#fbbf24] text-[#1B7640] rounded-full text-sm font-semibold mb-6">
               NDIS Registered Provider
             </motion.span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+            <motion.h1 variants={staggerItem} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
               Empowering Independence through{" "}
               <span className="text-[#fbbf24]">Safe & Supportive</span> Services
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg md:text-xl text-white/95 mb-8 leading-relaxed max-w-2xl drop-shadow-md font-medium">
+            <motion.p variants={staggerItem} className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
               Marvel Driving and Transport Pty Ltd is an Australian owned NDIS registered provider
               supporting people of all abilities to travel safely, confidently and independently.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" className="bg-white text-[#1e5128] hover:bg-gray-100 font-bold h-14 px-8 text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all" asChild>
+            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-14 px-8 text-lg rounded-lg shadow-lg hover:scale-105 transition-all" asChild>
                 <Link href="/book">
                   Book a Service
-                  <ArrowRight className="h-5 w-5 ml-2" />
+                  <ChevronRight className="h-5 w-5 ml-1" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 h-14 px-8 text-lg rounded-full font-bold backdrop-blur-sm" asChild>
-                <Link href="/services">Explore NDIS Services</Link>
+              <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 h-14 px-8 text-lg rounded-lg font-bold" asChild>
+                <Link href="/ndis-services">Explore NDIS Services</Link>
               </Button>
-            </div>
+            </motion.div>
 
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm mt-8 text-[#1e5128] bg-[#fbbf24] font-extrabold shadow-lg hover:scale-105 transition-transform">
+            <motion.span variants={staggerItem} className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm mt-6 text-[#1B7640] bg-[#fbbf24] font-semibold">
               <MapPin className="h-4 w-4" />
               Serving Penshurst, Hurstville & Bexley
-            </span>
+            </motion.span>
           </motion.div>
         </div>
       </section>
 
-      {/* Trusted Features Section */}
-      <section className="-mt-12 relative z-20 pb-12">
+      {/* Trust Indicators */}
+      <section className="py-16 bg-[#f8fafc]">
         <div className="container px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                icon: Shield,
-                title: "NDIS Registered",
-                desc: "Fully registered and compliant NDIS provider"
-              },
-              {
-                icon: Award,
-                title: "Professional Team",
-                desc: "Highly experienced, compassionate and professionally trained staff"
-              },
-              {
-                icon: Clock,
-                title: "Reliable Service",
-                desc: "Safe, punctual and dependable support you can count on"
-              }
-            ].map((feature, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {trustIndicators.map((item, index) => (
               <motion.div
-                key={i}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl shadow-gray-200/50 border border-gray-100 flex items-center gap-6 group hover:border-[#1e5128]/30 transition-all"
+                transition={{ delay: index * 0.1 }}
+                className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md border border-gray-100"
+                style={{
+                  animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
+                  animationDelay: `${index * 0.3}s`
+                }}
               >
-                <div className="shrink-0 w-16 h-16 bg-[#1e5128] rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
-                  <feature.icon className="h-8 w-8" />
+                <div className="p-3 bg-[#1B7640] rounded-lg shrink-0">
+                  <item.icon className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0a2f14] mb-1">{feature.title}</h3>
-                  <p className="text-gray-500 leading-relaxed text-sm">{feature.desc}</p>
+                  <h3 className="font-bold text-lg mb-1 text-[#0d4a28]">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -155,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 bg-[#f8fafc]">
+      <section className="py-20">
         <div className="container px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -163,76 +176,77 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-[#1e5128] tracking-tight">Our Services</h2>
-            <p className="text-xl text-gray-600 leading-relaxed font-medium">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0d4a28]">Our Services</h2>
+            <p className="text-lg text-gray-500">
               Whether you're learning to drive, travelling to appointments, going to community activities,
               education, work or simply getting out to enjoy life — we are here to support you every step of the way.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {services.map((service) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="h-full"
+                variants={staggerItem}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                <Link href={service.link} className="block h-full p-10 bg-white rounded-[3rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-2 group flex flex-col items-center text-center border border-gray-50/50">
-                  <div className={`inline-flex p-6 ${service.color} rounded-2xl mb-8 group-hover:scale-105 transition-transform duration-500`}>
-                    <service.icon className="h-10 w-10" />
+                <Link href={service.link} className="block h-full p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                  <div className={`inline-flex p-4 ${service.color} rounded-xl mb-4`}>
+                    <service.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-extrabold mb-5 text-[#0a2f14] tracking-tight">
+                  <h3 className="text-lg font-bold mb-2 text-[#0d4a28] group-hover:text-[#1B7640] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-500 mb-10 flex-grow leading-relaxed text-[15px] font-normal">{service.description}</p>
-                  <span className="inline-flex items-center text-[#1e5128] font-bold text-sm group-hover:gap-2 transition-all mt-auto uppercase tracking-widest">
-                    LEARN MORE <ArrowRight className="h-4 w-4 ml-1.5" />
+                  <p className="text-sm text-gray-500 mb-4">{service.description}</p>
+                  <span className="inline-flex items-center text-[#1B7640] font-semibold text-sm group-hover:gap-2 transition-all">
+                    Learn More <ChevronRight className="h-4 w-4" />
                   </span>
                 </Link>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-[#e8e9eb]">
+      <section className="py-20 bg-[#f8fafc]">
         <div className="container px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-block px-4 py-1.5 bg-[#1e5128] text-white rounded-full text-sm font-bold mb-6 tracking-wide shadow-sm">
+              <span className="inline-block px-4 py-2 bg-[#1B7640] text-white rounded-full text-sm font-semibold mb-4">
                 Why Choose Us
-              </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-[#0a2f14] leading-tight">
-                Why Choose Marvel Driving and Transport?
-              </h2>
-              <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#0d4a28]">Why Choose Marvel Driving and Transport?</h2>
+              <p className="text-lg text-gray-500 mb-6 leading-relaxed">
                 Our dedicated team is highly experienced, compassionate and professionally trained
                 to meet the diverse needs of participants, families and support networks. We take
                 pride in delivering reliable, respectful and person-centred services that promote
                 independence, confidence and dignity.
               </p>
-              <ul className="space-y-5 mb-10">
+              <ul className="space-y-3 mb-8">
                 {whyChooseUs.map(item => (
-                  <li key={item} className="flex items-start gap-4">
-                    <div className="p-1 rounded-full bg-[#1e5128] mt-1 shrink-0">
-                      <ChevronRight className="h-3 w-3 text-white" />
+                  <li key={item} className="flex items-center gap-3">
+                    <div className="p-1 bg-[#1B7640] rounded-full shrink-0">
+                      <ChevronRight className="h-4 w-4 text-white" />
                     </div>
-                    <span className="font-semibold text-gray-700 text-lg">{item}</span>
+                    <span className="text-gray-700">{item}</span>
                   </li>
                 ))}
               </ul>
-              <Button size="lg" className="bg-[#dc2626] text-white hover:bg-[#b91c1c] h-14 px-8 font-bold text-lg rounded-lg shadow-lg hover:shadow-xl transition-all" asChild>
+              <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-12 px-8 rounded-lg" asChild>
                 <Link href="/about">
                   Learn More About Us
-                  <ChevronRight className="h-5 w-5 ml-2" />
+                  <ChevronRight className="h-5 w-5 ml-1" />
                 </Link>
               </Button>
             </motion.div>
@@ -243,53 +257,35 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[6px] border-white z-10">
-                <img
-                  src={ndisImage}
-                  alt="Care worker helping client"
-                  className="w-full h-full object-cover aspect-[4/3] transform hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              <div className="absolute -bottom-8 -left-8 bg-[#fbbf24] p-8 rounded-3xl shadow-xl z-20 max-w-[240px]">
-                <p className="font-extrabold text-5xl text-[#1e5128] mb-1">100%</p>
-                <p className="text-sm font-bold text-[#1e5128] uppercase tracking-wider">Participant Focused</p>
+              <img
+                src={ndisImage}
+                alt="NDIS Transport Service"
+                className="w-full rounded-2xl shadow-xl"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-[#fbbf24] p-6 rounded-xl shadow-lg">
+                <p className="font-bold text-2xl text-[#1B7640]">100%</p>
+                <p className="text-sm text-[#1B7640]/80">Participant Focused</p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Driving Test Package */}
-      <DrivingTestPackage />
-
       {/* Driving Lesson Pricing + P1 Licence Guide (side by side) */}
-      <section className="py-24 bg-[#f8fafc]">
+      <section className="py-16 md:py-20 bg-[#f8fafc]">
         <div className="container px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="h-full"
-            >
-              <DrivingLessonPricing compact />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="h-full"
-            >
-              <P1LicenceGuide compact />
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <DrivingLessonPricing compact />
+            <P1LicenceGuide compact />
           </div>
         </div>
       </section>
 
       {/* Achievements Stats */}
       <AchievementsStats />
+
+      {/* Driving Test Package */}
+      <DrivingTestPackage />
 
       {/* Testimonials */}
       <TestimonialsMarquee />

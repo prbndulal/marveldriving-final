@@ -143,7 +143,7 @@ export default function NDISServices() {
                             alt="NDIS disability support services in Sydney NSW"
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-[#0a2f14]/85" />
+                        <div className="absolute inset-0 bg-[#0d4a28]/85" />
                     </div>
 
                     <div className="container mx-auto px-4 relative z-10">
@@ -152,7 +152,7 @@ export default function NDISServices() {
                             animate={{ opacity: 1, x: 0 }}
                             className="max-w-3xl text-white"
                         >
-                            <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0a2f14] rounded-full text-xs font-extrabold mb-6 tracking-wider uppercase">
+                            <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0d4a28] rounded-full text-xs font-extrabold mb-6 tracking-wider uppercase">
                                 NDIS Registered Provider — #4050085206
                             </span>
                             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
@@ -168,7 +168,7 @@ export default function NDISServices() {
                                 Serving Penshurst, Hurstville &amp; Bexley — Sydney, NSW
                             </p>
                             <div className="flex flex-col sm:flex-row gap-5">
-                                <Button className="bg-white text-[#0a2f14] hover:bg-white/95 font-extrabold text-lg h-16 px-10 rounded-full shadow-xl hover:scale-105 transition-all" asChild>
+                                <Button className="bg-white text-[#0d4a28] hover:bg-white/95 font-extrabold text-lg h-16 px-10 rounded-full shadow-xl hover:scale-105 transition-all" asChild>
                                     <a href="#ndis-enquiry">
                                         <FileText className="h-5 w-5 mr-3" />
                                         Make an NDIS Enquiry
@@ -188,11 +188,11 @@ export default function NDISServices() {
                 {/* Service Area Banner */}
                 <section className="py-4 bg-gray-50 border-b border-gray-200">
                     <div className="container mx-auto px-4">
-                        <div className="flex items-center justify-center gap-3 text-sm font-bold text-[#0a2f14]/70 uppercase tracking-widest">
+                        <div className="flex items-center justify-center gap-3 text-sm font-bold text-[#0d4a28]/70 uppercase tracking-widest">
                             <MapPin className="h-4 w-4 text-[#fbbf24]" />
                             <span>
                                 NDIS services available in{" "}
-                                <span className="text-[#0a2f14]">Penshurst, Hurstville &amp; Bexley</span>, Sydney NSW
+                                <span className="text-[#0d4a28]">Penshurst, Hurstville &amp; Bexley</span>, Sydney NSW
                             </span>
                         </div>
                     </div>
@@ -207,7 +207,7 @@ export default function NDISServices() {
                             viewport={{ once: true }}
                             className="max-w-4xl mx-auto text-center"
                         >
-                            <div className="inline-flex p-4 bg-[#1e5128] rounded-xl mb-6">
+                            <div className="inline-flex p-4 bg-[#1B7640] rounded-xl mb-6">
                                 <GraduationCap className="h-8 w-8 text-white" />
                             </div>
                             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
@@ -239,7 +239,7 @@ export default function NDISServices() {
                                         key={item.title}
                                         className="p-6 bg-white rounded-xl shadow-md border border-gray-100"
                                     >
-                                        <h3 className="font-bold mb-2 text-[#1e5128]">{item.title}</h3>
+                                        <h3 className="font-bold mb-2 text-[#1B7640]">{item.title}</h3>
                                         <p className="text-sm text-gray-600">{item.desc}</p>
                                     </div>
                                 ))}
@@ -290,12 +290,12 @@ export default function NDISServices() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-yellow-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-green-100 to-transparent rounded-bl-full" />
                                     <div className="relative z-10 text-center">
-                                        <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#1e5128] to-[#1e5128]/80 rounded-xl shadow-md mb-3 group-hover:scale-110 transition-transform duration-300">
+                                        <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#1B7640] to-[#1B7640]/80 rounded-xl shadow-md mb-3 group-hover:scale-110 transition-transform duration-300">
                                             <span className="text-white font-bold text-lg">
                                                 {group.code}
                                             </span>
                                         </div>
-                                        <p className="text-sm font-medium text-gray-800 group-hover:text-[#1e5128] transition-colors duration-300">
+                                        <p className="text-sm font-medium text-gray-800 group-hover:text-[#1B7640] transition-colors duration-300">
                                             {group.name}
                                         </p>
                                     </div>
@@ -336,7 +336,7 @@ export default function NDISServices() {
                                 >
                                     <div className="flex flex-col lg:flex-row gap-6">
                                         <div className="lg:w-1/3">
-                                            <div className="inline-flex p-4 bg-[#1e5128] rounded-xl mb-4 shadow-lg">
+                                            <div className="inline-flex p-4 bg-[#1B7640] rounded-xl mb-4 shadow-lg">
                                                 <category.icon className="h-8 w-8 text-white" />
                                             </div>
                                             <h3 className="text-xl font-bold mb-2 text-gray-900">{category.title}</h3>
@@ -351,7 +351,7 @@ export default function NDISServices() {
                                                         key={feature}
                                                         className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg"
                                                     >
-                                                        <CheckCircle className="h-5 w-5 text-[#1e5128] flex-shrink-0 mt-0.5" />
+                                                        <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0 mt-0.5" />
                                                         <span className="text-sm text-gray-700">{feature}</span>
                                                     </li>
                                                 ))}
@@ -410,7 +410,7 @@ export default function NDISServices() {
                                         key={item.text}
                                         className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100"
                                     >
-                                        <item.icon className="h-6 w-6 text-[#1e5128] flex-shrink-0" />
+                                        <item.icon className="h-6 w-6 text-[#1B7640] flex-shrink-0" />
                                         <span className="font-medium text-gray-800">{item.text}</span>
                                     </div>
                                 ))}
@@ -428,7 +428,7 @@ export default function NDISServices() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                             >
-                                <span className="inline-block px-4 py-2 bg-[#1e5128]/10 text-[#1e5128] rounded-full text-sm font-bold mb-4">
+                                <span className="inline-block px-4 py-2 bg-[#1B7640]/10 text-[#1B7640] rounded-full text-sm font-bold mb-4">
                                     Eligibility &amp; Getting Started
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
@@ -444,14 +444,14 @@ export default function NDISServices() {
                                 <ul className="space-y-3 mb-6">
                                     {eligibilityPoints.map((point) => (
                                         <li key={point} className="flex items-start gap-3">
-                                            <CheckCircle className="h-5 w-5 text-[#1e5128] flex-shrink-0 mt-0.5" />
+                                            <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0 mt-0.5" />
                                             <span className="text-gray-700">{point}</span>
                                         </li>
                                     ))}
                                 </ul>
 
                                 <div className="p-6 bg-white rounded-xl shadow-md border border-gray-200">
-                                    <h4 className="font-bold mb-2 text-[#1e5128]">
+                                    <h4 className="font-bold mb-2 text-[#1B7640]">
                                         Not Sure About Your Eligibility?
                                     </h4>
                                     <p className="text-gray-600 text-sm mb-3">
@@ -459,7 +459,7 @@ export default function NDISServices() {
                                         liaise with your support coordinator or plan manager on your
                                         behalf.
                                     </p>
-                                    <Button variant="default" className="bg-[#1e5128] hover:bg-[#153e1e] text-white" asChild>
+                                    <Button variant="default" className="bg-[#1B7640] hover:bg-[#153e1e] text-white" asChild>
                                         <a href="#ndis-enquiry">
                                             Submit an Enquiry
                                             <ChevronRight className="h-4 w-4 ml-1" />
@@ -504,7 +504,7 @@ export default function NDISServices() {
                                             transition={{ delay: index * 0.1 }}
                                             className="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow"
                                         >
-                                            <div className="w-12 h-12 bg-[#1e5128] text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 shadow-md">
+                                            <div className="w-12 h-12 bg-[#1B7640] text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 shadow-md">
                                                 {item.step}
                                             </div>
                                             <div>
@@ -571,8 +571,8 @@ export default function NDISServices() {
                                 viewport={{ once: true }}
                                 className="text-center mb-8"
                             >
-                                <div className="inline-flex p-3 bg-[#1e5128]/10 rounded-xl mb-4">
-                                    <Mail className="h-7 w-7 text-[#1e5128]" />
+                                <div className="inline-flex p-3 bg-[#1B7640]/10 rounded-xl mb-4">
+                                    <Mail className="h-7 w-7 text-[#1B7640]" />
                                 </div>
                                 <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">
                                     NDIS Service Enquiry
@@ -595,7 +595,7 @@ export default function NDISServices() {
                 <section className="py-12 bg-white border-t border-gray-200">
                     <div className="container mx-auto px-4">
                         <div className="max-w-4xl mx-auto text-center">
-                            <h3 className="font-bold text-lg mb-4 text-[#1e5128]">Provider Details</h3>
+                            <h3 className="font-bold text-lg mb-4 text-[#1B7640]">Provider Details</h3>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
                                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                                     <p className="font-medium text-gray-900">Business Name</p>
@@ -617,7 +617,7 @@ export default function NDISServices() {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-20 bg-[#1e5128]">
+                <section className="py-20 bg-[#1B7640]">
                     <div className="container mx-auto px-4">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

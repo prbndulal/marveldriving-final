@@ -101,7 +101,7 @@ export default function AvailabilityPage() {
 
     if (loading) return (
         <div className="flex h-[60vh] items-center justify-center">
-            <Loader2 className="h-10 w-10 animate-spin text-[#1e5128]" />
+            <Loader2 className="h-10 w-10 animate-spin text-[#1B7640]" />
         </div>
     );
 
@@ -109,13 +109,13 @@ export default function AvailabilityPage() {
         <div className="max-w-4xl mx-auto space-y-10 animate-in fade-in duration-700">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-[#0a2f14] tracking-tight">Availability</h1>
+                    <h1 className="text-3xl font-extrabold text-[#0d4a28] tracking-tight">Availability</h1>
                     <p className="text-gray-500 font-medium uppercase tracking-[0.2em] text-[10px]">Weekly Working Hours • PostgreSQL</p>
                 </div>
                 <Button 
                     onClick={handleSave} 
                     disabled={saving}
-                    className="rounded-xl bg-[#0a2f14] hover:bg-[#1e5128] h-12 px-8 font-extrabold shadow-lg shadow-[#0a2f14]/10"
+                    className="rounded-xl bg-[#0d4a28] hover:bg-[#1B7640] h-12 px-8 font-extrabold shadow-lg shadow-[#0d4a28]/10"
                 >
                     {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
                     Save Schedule
@@ -128,7 +128,7 @@ export default function AvailabilityPage() {
                         <div className="p-2 bg-[#fbbf24]/10 rounded-xl">
                             <Clock className="h-5 w-5 text-[#d97706]" />
                         </div>
-                        <CardTitle className="text-xl font-extrabold text-[#0a2f14]">Weekly Schedule</CardTitle>
+                        <CardTitle className="text-xl font-extrabold text-[#0d4a28]">Weekly Schedule</CardTitle>
                     </div>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -142,7 +142,7 @@ export default function AvailabilityPage() {
                                     : "bg-gray-50/50 border-transparent opacity-60 grayscale-[0.5]"
                                 }`}
                             >
-                                <div className="w-full sm:w-32 font-black text-[#0a2f14] flex items-center gap-3">
+                                <div className="w-full sm:w-32 font-black text-[#0d4a28] flex items-center gap-3">
                                     <span className="h-2 w-2 rounded-full bg-[#fbbf24]" />
                                     {day.label}
                                 </div>
@@ -151,9 +151,9 @@ export default function AvailabilityPage() {
                                     <Switch
                                         checked={day.isActive}
                                         onCheckedChange={(checked: boolean) => handleUpdate(index, "isActive", checked)}
-                                        className="data-[state=checked]:bg-[#1e5128]"
+                                        className="data-[state=checked]:bg-[#1B7640]"
                                     />
-                                    <span className={`text-xs font-extrabold uppercase tracking-widest min-w-[60px] ${day.isActive ? "text-[#1e5128]" : "text-gray-400"}`}>
+                                    <span className={`text-xs font-extrabold uppercase tracking-widest min-w-[60px] ${day.isActive ? "text-[#1B7640]" : "text-gray-400"}`}>
                                         {day.isActive ? "Active" : "Oﬀ Duty"}
                                     </span>
                                 </div>
@@ -165,7 +165,7 @@ export default function AvailabilityPage() {
                                                 type="time"
                                                 value={day.startTime}
                                                 onChange={(e) => handleUpdate(index, "startTime", e.target.value)}
-                                                className="w-36 h-12 bg-white border-gray-100 rounded-xl font-bold text-[#0a2f14] px-4 focus:ring-[#1e5128]/20 transition-all"
+                                                className="w-36 h-12 bg-white border-gray-100 rounded-xl font-bold text-[#0d4a28] px-4 focus:ring-[#1B7640]/20 transition-all"
                                             />
                                         </div>
                                         <span className="text-gray-300 font-bold">to</span>
@@ -174,7 +174,7 @@ export default function AvailabilityPage() {
                                                 type="time"
                                                 value={day.endTime}
                                                 onChange={(e) => handleUpdate(index, "endTime", e.target.value)}
-                                                className="w-36 h-12 bg-white border-gray-100 rounded-xl font-bold text-[#0a2f14] px-4 focus:ring-[#1e5128]/20 transition-all"
+                                                className="w-36 h-12 bg-white border-gray-100 rounded-xl font-bold text-[#0d4a28] px-4 focus:ring-[#1B7640]/20 transition-all"
                                             />
                                         </div>
                                     </div>
