@@ -125,6 +125,18 @@ function BookingContent() {
     useEffect(() => {
         const status = searchParams.get("status");
         if (status === "success") {
+            const bookingId = searchParams.get("booking_id");
+            const sessionId = searchParams.get("session_id");
+
+            // Confirm payment directly with Stripe — no webhook dependency
+            if (bookingId && sessionId) {
+                fetch("/api/bookings/confirm", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ bookingId, sessionId }),
+                }).catch((err) => console.error("Confirm payment error:", err));
+            }
+
             setStep(5);
             toast({
                 title: "Payment Successful!",
