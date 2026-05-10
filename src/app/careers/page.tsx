@@ -1,140 +1,103 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, CheckCircle, Mail, Phone, Users, Calendar, Award } from "lucide-react";
+import { CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { PageHero } from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 
-// Mapped assets
-const heroImage = "/instructor.jpg";
+interface Vacancy {
+    id: string;
+    title: string;
+    type: string;
+    location: string;
+    description: string;
+    requirements: string[];
+    active: boolean;
+}
 
-const positions = [
-    {
-        title: "Driving Instructor (Automatic)",
-        type: "Contract / Casual",
-        location: "Sydney (St George & Sutherland Shire)",
-        description: "We are looking for patient, professional driving instructors to join our growing team. You must hold a valid driving instructor licence and have a passion for road safety.",
-        requirements: [
-            "Current NSW Driving Instructor Licence",
-            "Working with Children Check",
-            "Late model automatic vehicle (dual controls)",
-            "Excellent communication skills",
-            "Patience and professional demeanour"
-        ]
-    }
+const benefits = [
+    "Competitive pay rates",
+    "Flexible scheduling",
+    "Ongoing training and development",
+    "Supportive team environment",
+    "Make a meaningful difference",
+    "Modern, well-maintained vehicles",
 ];
 
 export default function Careers() {
+    const { toast } = useToast();
+    const [vacancies, setVacancies] = useState<Vacancy[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
-        licenceNumber: "",
-        message: ""
+        position: "",
+        message: "",
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const { toast } = useToast();
+
+    useEffect(() => {
+        fetch("/api/vacancies").then(r => r.json()).then(setVacancies);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         toast({
-            title: "Application Received",
-            description: "Thank you for your interest. We will be in touch shortly.",
+            title: "Application Submitted!",
+            description: "Thank you for your interest. We'll be in touch soon.",
         });
+        setFormData({ name: "", email: "", phone: "", position: "", message: "" });
         setIsSubmitting(false);
-        setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            licenceNumber: "",
-            message: ""
-        });
     };
 
     return (
-        <>
-            {/* Hero Section */}
-            <section className="relative py-24 md:py-48 overflow-hidden">
-                <div className="absolute inset-0">
-                    <img src="/instructor.jpg" alt="Careers at Marvel Driving" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-[#0d4a28]/85" />
-                </div>
+        <div className="flex flex-col min-h-screen">
+            <PageHero
+                badge="Careers"
+                titleStart="Join The"
+                titleAccent="Marvel Team"
+                description="Join our team and help people achieve independence and confidence on the road. We're always looking for passionate individuals."
+                bannerImage="/instructor.jpg"
+                imageAlt="Careers at Marvel Driving"
+            />
 
-                <div className="container mx-auto px-4 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="max-w-3xl"
-                    >
-                        <span className="inline-block px-4 py-2 bg-[#fbbf24] text-[#0d4a28] rounded-full text-xs font-extrabold mb-8 tracking-wider uppercase">
-                            Join Our Team
-                        </span>
-                        <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-white tracking-tight">
-                            Careers at Marvel Driving
-                        </h1>
-                        <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed font-medium">
-                            Are you a passionate driving instructor? Join a team that values safety,
-                            professionalism, and inclusive education.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-6">
-                            <Button className="bg-white text-[#0d4a28] hover:bg-gray-100 font-extrabold text-lg h-16 px-12 rounded-full shadow-2xl transition-all hover:scale-105" asChild>
-                                <a href="#positions">
-                                    <Briefcase className="h-5 w-5 mr-3" />
-                                    View Open Positions
-                                </a>
-                            </Button>
-                            <Button variant="outline" className="border-white text-white hover:bg-white/10 font-extrabold text-lg h-16 px-12 rounded-full backdrop-blur-sm shadow-xl transition-all hover:scale-105" asChild>
-                                <Link href="/contact">Get in Touch</Link>
-                            </Button>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Intro */}
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4 text-center max-w-3xl">
+            {/* Why Work With Us */}
+            <section className="py-20">
+                <div className="container px-4 md:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="text-center max-w-3xl mx-auto mb-16"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0d4a28]">
                             Why Work With Us?
                         </h2>
-                        <p className="text-lg text-gray-600 mb-12">
-                            At Marvel Driving, we're more than just a driving school. We're a community-focused
-                            provider committed to road safety and empowering learners of all abilities.
+                        <p className="text-lg text-gray-500">
+                            At Marvel Driving, we believe in creating an inclusive, supportive
+                            workplace where everyone can thrive.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { icon: Users, title: "Supportive Team", desc: "Work with a friendly, professional team that supports your growth." },
-                            { icon: Calendar, title: "Flexible Hours", desc: "Manage your own schedule and work hours that suit your lifestyle." },
-                            { icon: Award, title: "Quality Focused", desc: "We pride ourselves on high standards of instruction and customer service." }
-                        ].map((item, idx) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        {benefits.map((benefit, index) => (
                             <motion.div
-                                key={item.title}
+                                key={benefit}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="p-6 bg-gray-50 rounded-xl"
+                                transition={{ delay: index * 0.1 }}
+                                className="flex items-center gap-3 p-4 bg-[#f8fafc] rounded-lg"
                             >
-                                <div className="w-12 h-12 bg-[#1B7640] rounded-full flex items-center justify-center mx-auto mb-4 text-white">
-                                    <item.icon className="h-6 w-6" />
-                                </div>
-                                <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
-                                <p className="text-gray-600">{item.desc}</p>
+                                <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0" />
+                                <span className="text-gray-700">{benefit}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -142,42 +105,73 @@ export default function Careers() {
             </section>
 
             {/* Open Positions */}
-            <section id="positions" className="py-20 bg-[#f8fafc]">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Open Positions</h2>
+            <section className="py-20 bg-[#f8fafc]">
+                <div className="container px-4 md:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center max-w-3xl mx-auto mb-16"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0d4a28]">
+                            Open Positions
+                        </h2>
+                        <p className="text-lg text-gray-500">
+                            Explore our current opportunities and find your next career move.
+                        </p>
+                    </motion.div>
 
-                        {positions.map((job) => (
+                    <div className="space-y-8 max-w-4xl mx-auto">
+                        {vacancies.length === 0 && (
+                            <p className="text-center text-gray-400 py-8">No open positions at this time. Check back soon!</p>
+                        )}
+                        {vacancies.map((position, index) => (
                             <motion.div
-                                key={job.title}
-                                initial={{ opacity: 0, y: 20 }}
+                                key={position.id}
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 mb-8"
+                                transition={{ delay: index * 0.1 }}
+                                className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
                             >
-                                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                                <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                                     <div>
-                                        <h3 className="text-2xl font-bold text-[#1B7640]">{job.title}</h3>
-                                        <p className="text-gray-500 font-medium">{job.location} • {job.type}</p>
+                                        <h3 className="text-2xl font-bold mb-2 text-[#0d4a28]">{position.title}</h3>
+                                        <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                                            <span className="flex items-center gap-1">
+                                                <Clock className="h-4 w-4" />
+                                                {position.type}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <Button asChild>
-                                        <a href="#apply">Apply Now</a>
-                                    </Button>
+                                    <span className="px-4 py-2 bg-[#1B7640]/10 text-[#1B7640] rounded-full text-sm font-medium">
+                                        Now Hiring
+                                    </span>
                                 </div>
 
-                                <p className="text-gray-700 mb-6 leading-relaxed">
-                                    {job.description}
-                                </p>
+                                <p className="text-gray-500 mb-6">{position.description}</p>
 
-                                <h4 className="font-bold mb-3 text-gray-900">Requirements:</h4>
-                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
-                                    {job.requirements.map((req) => (
-                                        <li key={req} className="flex items-center gap-2 text-sm text-gray-700">
-                                            <CheckCircle className="h-4 w-4 text-[#fbbf24] flex-shrink-0" />
-                                            {req}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="mb-6">
+                                    <h4 className="font-semibold mb-3 text-[#0d4a28]">Requirements:</h4>
+                                    <ul className="space-y-2">
+                                        {position.requirements.map(req => (
+                                            <li key={req} className="flex items-start gap-2 text-sm">
+                                                <CheckCircle className="h-4 w-4 text-[#1B7640] flex-shrink-0 mt-0.5" />
+                                                <span className="text-gray-700">{req}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <Button
+                                    className="bg-[#1B7640] hover:bg-[#0d4a28] text-white font-semibold"
+                                    onClick={() => {
+                                        setFormData(prev => ({ ...prev, position: position.title }));
+                                        document.getElementById("apply-form")?.scrollIntoView({ behavior: "smooth" });
+                                    }}
+                                >
+                                    Apply Now
+                                </Button>
                             </motion.div>
                         ))}
                     </div>
@@ -185,78 +179,105 @@ export default function Careers() {
             </section>
 
             {/* Application Form */}
-            <section id="apply" className="py-20 bg-white">
-                <div className="container mx-auto px-4 text-center max-w-2xl">
-                    <h2 className="text-3xl font-bold mb-6 text-gray-900">Apply Now</h2>
-                    <p className="text-gray-600 mb-8">
-                        Interested in joining our team? Send us your details and we'll be in touch.
-                    </p>
-
-                    <form onSubmit={handleSubmit} className="space-y-4 text-left bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="name">Full Name</Label>
-                                <Input
-                                    id="name"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    required
-                                    placeholder="Jane Smith"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    required
-                                    placeholder="jane@example.com"
-                                />
-                            </div>
+            <section id="apply-form" className="py-20">
+                <div className="container px-4 md:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-2xl mx-auto"
+                    >
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0d4a28]">Apply Now</h2>
+                            <p className="text-lg text-gray-500">
+                                Submit your application and we'll be in touch soon.
+                            </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="name">Full Name *</Label>
+                                    <Input
+                                        id="name"
+                                        value={formData.name}
+                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                        placeholder="Your full name"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">Email *</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone">Phone *</Label>
+                                    <Input
+                                        id="phone"
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                        required
+                                        placeholder="04XX XXX XXX"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="position">Position *</Label>
+                                    <Input
+                                        id="position"
+                                        value={formData.position}
+                                        onChange={e => setFormData({ ...formData, position: e.target.value })}
+                                        required
+                                        placeholder="Position you're applying for"
+                                    />
+                                </div>
+                            </div>
+
                             <div className="space-y-2">
-                                <Label htmlFor="phone">Phone</Label>
-                                <Input
-                                    id="phone"
-                                    type="tel"
-                                    value={formData.phone}
-                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                    required
-                                    placeholder="0400 000 000"
+                                <Label htmlFor="message">Cover Letter / Message</Label>
+                                <Textarea
+                                    id="message"
+                                    value={formData.message}
+                                    onChange={e => setFormData({ ...formData, message: e.target.value })}
+                                    placeholder="Tell us about yourself and why you'd be a great fit..."
+                                    rows={5}
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="licence">Instructor Licence Number</Label>
-                                <Input
-                                    id="licence"
-                                    value={formData.licenceNumber}
-                                    onChange={(e) => setFormData({ ...formData, licenceNumber: e.target.value })}
-                                    placeholder="Optional"
-                                />
-                            </div>
-                        </div>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="message">Cover Letter / Message</Label>
-                            <Textarea
-                                id="message"
-                                value={formData.message}
-                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                placeholder="Tell us briefly about your experience and why you'd like to join us."
-                                rows={4}
-                            />
-                        </div>
+                            <p className="text-sm text-gray-500">
+                                Note: For full applications, please email your resume to{" "}
+                                <a href="mailto:info@marveldriving.com.au" className="text-[#1B7640] hover:underline">
+                                    info@marveldriving.com.au
+                                </a>
+                            </p>
 
-                        <Button type="submit" className="w-full bg-[#1B7640] hover:bg-[#153e1e]" disabled={isSubmitting}>
-                            {isSubmitting ? "Sending..." : "Submit Application"}
-                        </Button>
-                    </form>
+                            <Button
+                                type="submit"
+                                size="lg"
+                                className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-14 text-lg"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? "Submitting..." : "Submit Application"}
+                            </Button>
+                        </form>
+
+                        <p className="text-center text-sm text-gray-500 mt-8">
+                            Marvel Driving is an Equal Opportunity Employer. We celebrate diversity
+                            and are committed to creating an inclusive environment for all employees.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

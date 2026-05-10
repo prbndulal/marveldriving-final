@@ -136,8 +136,20 @@ export default function DKT() {
                         </motion.div>
 
                         <motion.div variants={slideRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="order-1 lg:order-2">
-                            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#f8fafc] p-8">
-                                <div className="text-center space-y-4">
+                            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+                                <img
+                                    src="/p1-speed-limits.jpg"
+                                    alt="NSW L, P1 and P2 plate speed limits — 90, 90 and 100 km/h"
+                                    className="w-full h-auto object-cover"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        const target = e.currentTarget as HTMLImageElement;
+                                        target.style.display = "none";
+                                        const fallback = target.nextElementSibling as HTMLElement;
+                                        if (fallback) fallback.style.display = "block";
+                                    }}
+                                />
+                                <div className="hidden bg-[#f8fafc] p-8 text-center space-y-4">
                                     <p className="text-6xl font-extrabold text-[#fbbf24]">L</p>
                                     <p className="text-xl font-bold text-gray-700">Learner = 90 km/h max</p>
                                     <div className="h-px bg-gray-200" />
@@ -161,12 +173,12 @@ export default function DKT() {
                         <motion.p variants={slideUp} className="text-lg text-gray-500 mb-8">Download the official NSW Road User Handbook to study for your DKT. This comprehensive guide covers all the road rules you need to know.</motion.p>
                         <motion.div variants={staggerItem} className="flex flex-col sm:flex-row justify-center gap-4">
                             <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-12 px-6" asChild>
-                                <a href="/documents/Road-User-Handbook-English.pdf" download>
+                                <a href="https://www.transport.nsw.gov.au/sites/default/files/media/documents/2023/road-users-handbook.pdf" target="_blank" rel="noopener noreferrer" download>
                                     <Download className="h-5 w-5 mr-2" />Download Handbook (PDF)
                                 </a>
                             </Button>
                             <Button variant="outline" className="border-[#1B7640] text-[#1B7640] hover:bg-[#1B7640] hover:text-white h-12 px-6" asChild>
-                                <a href="/documents/Road-User-Handbook-English.pdf" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.transport.nsw.gov.au/roads-and-waterways/drivers-and-licences/new-drivers/driver-knowledge-test" target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="h-5 w-5 mr-2" />View Online
                                 </a>
                             </Button>

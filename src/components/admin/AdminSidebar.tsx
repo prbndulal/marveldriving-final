@@ -13,7 +13,8 @@ import {
     Clock,
     Home,
     Images,
-    BookOpen
+    BookOpen,
+    Briefcase
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,11 @@ const sidebarItems = [
         title: "Blog",
         href: "/admin/blog",
         icon: BookOpen,
+    },
+    {
+        title: "Vacancies",
+        href: "/admin/vacancies",
+        icon: Briefcase,
     },
 ];
 

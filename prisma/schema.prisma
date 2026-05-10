@@ -79,6 +79,19 @@ model GalleryImage {
   createdAt DateTime @default(now())
 }
 
+model JobVacancy {
+  id           String   @id @default(cuid())
+  title        String
+  type         String
+  location     String
+  description  String
+  requirements String[]
+  active       Boolean  @default(true)
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 model BlogPost {
   id        String   @id @default(cuid())
   slug      String   @unique
