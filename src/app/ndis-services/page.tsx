@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Accessibility, MapPin, Users, Heart, ChevronRight, CheckCircle, Car, AlertCircle, Shield, Phone, Mail, FileText, GraduationCap } from "lucide-react";
+import {
+    Accessibility, MapPin, Users, Heart, ChevronRight, CheckCircle,
+    Car, Home, AlertCircle, Shield, Phone, Mail, FileText, GraduationCap,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
@@ -45,7 +48,7 @@ const serviceCategories = [
         ],
     },
     {
-        icon: Users,
+        icon: Home,
         title: "Daily Living Support",
         description: "Assistance with everyday tasks to encourage independence and confidence",
         features: [
@@ -101,7 +104,7 @@ export default function NDISServices() {
                 titleStart="NDIS Disability"
                 titleAccent="Support Services"
                 description="Marvel Driving and Transport Pty Ltd (ABN: 65 661 258 591) is an Australian-owned, NDIS registered provider supporting people of all abilities to travel safely, build independence and participate in community life. Serving Penshurst, Hurstville & Bexley — Sydney, NSW."
-                bannerImage="/slider-2.jpg"
+                bannerImage="/slider-1.jpg"
                 imageAlt="NDIS disability support services in Sydney NSW"
             />
 
@@ -122,26 +125,36 @@ export default function NDISServices() {
                 <div className="container px-4 md:px-8">
                     <div className="flex items-center justify-center gap-2 text-sm text-[#1B7640]">
                         <MapPin className="h-4 w-4" />
-                        <span>NDIS services available in <strong>Penshurst, Hurstville & Bexley</strong>, Sydney NSW</span>
+                        <span>NDIS services available in <strong>Penshurst, Hurstville &amp; Bexley</strong>, Sydney NSW</span>
                     </div>
                 </div>
             </section>
 
-            {/* NDIS Provider Banner */}
+            {/* NDIS Registered Provider Banner */}
             <section className="py-12 bg-white">
                 <div className="container px-4 md:px-8 space-y-8">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-4xl mx-auto">
+                        <img src="/ndis-registered-banner.png" alt="Registered NDIS Provider" className="w-full h-auto rounded-2xl shadow-lg" />
+                    </motion.div>
+
+                    {/* CTA Buttons */}
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <a href="#ndis-enquiry">
-                            <Button size="lg" className="w-full h-16 bg-[#fbbf24] text-[#1B7640] hover:bg-[#f59e0b] uppercase tracking-wider font-bold text-base rounded-md shadow-md">Enquire Now</Button>
+                            <Button size="lg" className="w-full h-16 bg-[#fbbf24] text-[#0d4a28] hover:bg-[#f59e0b] uppercase tracking-wider font-bold text-base rounded-md shadow-md">
+                                Enquire Now
+                            </Button>
                         </a>
-                        <Link href="/contact">
-                            <Button size="lg" className="w-full h-16 bg-[#1B7640] text-white hover:bg-[#155c30] uppercase tracking-wider font-bold text-base rounded-md shadow-md">NDIS Referral Form</Button>
+                        <Link href="/ndis-referral">
+                            <Button size="lg" className="w-full h-16 bg-green-600 text-white hover:bg-green-700 uppercase tracking-wider font-bold text-base rounded-md shadow-md">
+                                NDIS Referral Form
+                            </Button>
                         </Link>
                     </motion.div>
 
+                    {/* NDIS Provider Number */}
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 py-6">
-                        <div className="shrink-0">
-                            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#6b21a8] flex items-center justify-center shadow-lg">
+                        <div className="flex-shrink-0">
+                            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-[hsl(285,55%,30%)] flex items-center justify-center shadow-lg">
                                 <div className="text-center text-white leading-none">
                                     <div className="flex items-center justify-center gap-1">
                                         <span className="text-4xl md:text-5xl font-extrabold">I</span>
@@ -165,9 +178,15 @@ export default function NDISServices() {
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex p-4 bg-[#1B7640] rounded-xl mb-6"><GraduationCap className="h-8 w-8 text-white" /></div>
                         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0d4a28]">Capacity Building — Improved Daily Living</h2>
-                        <p className="text-lg text-gray-500 mb-6 max-w-3xl mx-auto">Our driving lessons for NDIS participants are designed as a Capacity Building support under Improved Daily Living. We help participants develop the skills and confidence to drive independently, enhancing their quality of life and community access.</p>
+                        <p className="text-lg text-gray-500 mb-6 max-w-3xl mx-auto">
+                            Our driving lessons for NDIS participants are designed as a Capacity Building support under Improved Daily Living. We help participants develop the skills and confidence to drive independently, enhancing their quality of life and community access.
+                        </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                            {[{ title: "Qualified Instructors", desc: "Our instructors are professionally trained and experienced in supporting learners with diverse disabilities and needs." }, { title: "Automatic Vehicles", desc: "All lessons use modern automatic transmission vehicles — easier, safer, and less stressful to learn." }, { title: "Goal-Oriented", desc: "Lessons aligned with your NDIS plan goals, with progress tracking and reports for plan reviews." }].map(item => (
+                            {[
+                                { title: "Qualified Instructors", desc: "Our instructors are professionally trained and experienced in supporting learners with diverse disabilities and needs." },
+                                { title: "Automatic Vehicles", desc: "All lessons use modern automatic transmission vehicles — easier, safer, and less stressful to learn." },
+                                { title: "Goal-Oriented", desc: "Lessons aligned with your NDIS plan goals, with progress tracking and reports for plan reviews." },
+                            ].map((item) => (
                                 <div key={item.title} className="p-6 bg-white rounded-xl shadow-md border border-gray-100">
                                     <h3 className="font-bold mb-2 text-[#0d4a28]">{item.title}</h3>
                                     <p className="text-sm text-gray-500">{item.desc}</p>
@@ -178,7 +197,7 @@ export default function NDISServices() {
                 </div>
             </section>
 
-            {/* Registration Groups */}
+            {/* NDIS Registration Groups */}
             <section className="py-20 bg-[#f8fafc]">
                 <div className="container px-4 md:px-8">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto mb-12">
@@ -187,11 +206,19 @@ export default function NDISServices() {
                     </motion.div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
                         {ndisRegistrationGroups.map((group, index) => (
-                            <motion.div key={group.code} initial={{ opacity: 0, y: 30, scale: 0.9 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.08, type: "spring", stiffness: 100, damping: 15 }} whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }} className="group relative p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                            <motion.div
+                                key={group.code}
+                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.08, type: "spring", stiffness: 100, damping: 15 }}
+                                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }}
+                                className="group relative p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden"
+                            >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#1B7640]/5 to-[#fbbf24]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#1B7640]/10 to-transparent rounded-bl-full" />
                                 <div className="relative z-10 text-center">
-                                    <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#1B7640] to-[#1B7640]/80 rounded-xl shadow-md mb-3 group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+                                    <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#1B7640] to-[#0d4a28] rounded-xl shadow-md mb-3 group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
                                         <span className="text-white font-bold text-lg">{group.code}</span>
                                     </div>
                                     <p className="text-sm font-medium text-gray-700 group-hover:text-[#1B7640] transition-colors duration-300">{group.name}</p>
@@ -220,7 +247,7 @@ export default function NDISServices() {
                                     </div>
                                     <div className="lg:w-2/3">
                                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            {category.features.map(feature => (
+                                            {category.features.map((feature) => (
                                                 <li key={feature} className="flex items-start gap-2 p-3 bg-[#f8fafc] rounded-lg">
                                                     <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0 mt-0.5" />
                                                     <span className="text-sm text-gray-700">{feature}</span>
@@ -233,7 +260,7 @@ export default function NDISServices() {
                         ))}
                     </div>
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-8 flex items-start gap-3 p-6 bg-[#fbbf24]/20 rounded-xl max-w-3xl mx-auto">
-                        <AlertCircle className="h-6 w-6 text-[#d97706] flex-shrink-0 mt-0.5" />
+                        <AlertCircle className="h-6 w-6 text-[#0d4a28] flex-shrink-0 mt-0.5" />
                         <p className="text-gray-800"><strong>Please Note:</strong> All driving lessons are conducted in automatic transmission vehicles only. We do not offer manual transmission lessons.</p>
                     </motion.div>
                 </div>
@@ -248,7 +275,7 @@ export default function NDISServices() {
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-4xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {whyChooseUs.map(item => (
+                            {whyChooseUs.map((item) => (
                                 <div key={item.text} className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
                                     <item.icon className="h-6 w-6 text-[#1B7640] flex-shrink-0" />
                                     <span className="font-medium text-gray-800">{item.text}</span>
@@ -264,11 +291,11 @@ export default function NDISServices() {
                 <div className="container px-4 md:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                            <span className="inline-block px-4 py-2 bg-[#1B7640]/10 text-[#1B7640] rounded-full text-sm font-semibold mb-4">Eligibility & Getting Started</span>
+                            <span className="inline-block px-4 py-2 bg-[#1B7640]/10 text-[#1B7640] rounded-full text-sm font-semibold mb-4">Eligibility &amp; Getting Started</span>
                             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#0d4a28]">Am I Eligible for NDIS-Funded Services?</h2>
                             <p className="text-lg text-gray-500 mb-6 leading-relaxed">You may be eligible for our services if you meet the following criteria. We work closely with participants, support coordinators, families and allied health professionals to create tailored support solutions.</p>
                             <ul className="space-y-3 mb-6">
-                                {eligibilityPoints.map(point => (
+                                {eligibilityPoints.map((point) => (
                                     <li key={point} className="flex items-start gap-3">
                                         <CheckCircle className="h-5 w-5 text-[#1B7640] flex-shrink-0 mt-0.5" />
                                         <span className="text-gray-700">{point}</span>
@@ -278,17 +305,25 @@ export default function NDISServices() {
                             <div className="p-6 bg-[#f8fafc] rounded-xl shadow-md border border-gray-100">
                                 <h4 className="font-semibold mb-2 text-[#0d4a28]">Not Sure About Your Eligibility?</h4>
                                 <p className="text-gray-500 text-sm mb-3">Contact us and we'll help you understand your options. We can liaise with your support coordinator or plan manager on your behalf.</p>
-                                <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 px-5" size="sm" asChild>
+                                <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-semibold" size="sm" asChild>
                                     <a href="#ndis-enquiry">Submit an Enquiry <ChevronRight className="h-4 w-4 ml-1" /></a>
                                 </Button>
                             </div>
                         </motion.div>
                         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                             <div className="grid grid-cols-1 gap-4">
-                                {[{ step: "1", title: "Contact Us", desc: "Submit an enquiry or call us to discuss your needs and goals" }, { step: "2", title: "Service Agreement", desc: "We'll create a tailored support plan aligned with your NDIS goals" }, { step: "3", title: "Book Your Service", desc: "Schedule support at times and locations that suit you" }, { step: "4", title: "Enjoy Support", desc: "Experience professional, person-centred care that builds your independence" }].map((item, index) => (
+                                {[
+                                    { step: "1", title: "Contact Us", desc: "Submit an enquiry or call us to discuss your needs and goals" },
+                                    { step: "2", title: "Service Agreement", desc: "We'll create a tailored support plan aligned with your NDIS goals" },
+                                    { step: "3", title: "Book Your Service", desc: "Schedule support at times and locations that suit you" },
+                                    { step: "4", title: "Enjoy Support", desc: "Experience professional, person-centred care that builds your independence" },
+                                ].map((item, index) => (
                                     <motion.div key={item.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow">
                                         <div className="w-12 h-12 bg-[#1B7640] text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 shadow-md">{item.step}</div>
-                                        <div><h3 className="font-bold mb-1 text-[#0d4a28]">{item.title}</h3><p className="text-sm text-gray-500">{item.desc}</p></div>
+                                        <div>
+                                            <h3 className="font-bold mb-1 text-[#0d4a28]">{item.title}</h3>
+                                            <p className="text-sm text-gray-500">{item.desc}</p>
+                                        </div>
                                     </motion.div>
                                 ))}
                             </div>
@@ -348,7 +383,7 @@ export default function NDISServices() {
                 </div>
             </section>
 
-            {/* CTA */}
+            {/* CTA Section */}
             <section className="py-20 bg-[#1B7640]">
                 <div className="container px-4 md:px-8">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto text-white">

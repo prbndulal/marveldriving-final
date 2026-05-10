@@ -7,7 +7,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { DrivingTestPackage } from "@/components/home/DrivingTestPackage";
 
-const marvelDrivingSuccess = "/media__1771036906190.png";
+const marvelDrivingSuccess = "/marvel-driving-success.png"; // Replace with your actual image path
 
 const benefits = [
     "Learn in modern automatic vehicles",

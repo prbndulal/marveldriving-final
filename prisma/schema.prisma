@@ -92,6 +92,31 @@ model JobVacancy {
   updatedAt    DateTime @updatedAt
 }
 
+model NdisReferral {
+  id                    String   @id @default(cuid())
+  referringType         String
+  ndisNumber            String
+  ndisStartDate         String
+  ndisEndDate           String
+  hasPastReports        String?
+  participantFullName   String
+  participantDob        String
+  participantEmail      String
+  participantPhone      String
+  participantAddress    String
+  participantSuburb     String
+  participantState      String
+  participantPostcode   String
+  planManagementType    String
+  planManagerName       String?
+  referrerFirstName     String?
+  referrerLastName      String?
+  referrerPhone         String?
+  referrerEmail         String?
+  status                String   @default("new")
+  createdAt             DateTime @default(now())
+}
+
 model BlogPost {
   id        String   @id @default(cuid())
   slug      String   @unique
