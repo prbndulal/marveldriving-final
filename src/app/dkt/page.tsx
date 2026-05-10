@@ -173,12 +173,12 @@ export default function DKT() {
                         <motion.p variants={slideUp} className="text-lg text-gray-500 mb-8">Download the official NSW Road User Handbook to study for your DKT. This comprehensive guide covers all the road rules you need to know.</motion.p>
                         <motion.div variants={staggerItem} className="flex flex-col sm:flex-row justify-center gap-4">
                             <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-12 px-6" asChild>
-                                <a href="https://www.transport.nsw.gov.au/sites/default/files/media/documents/2023/road-users-handbook.pdf" target="_blank" rel="noopener noreferrer" download>
+                                <a href="/documents/Road-User-Handbook-English.pdf" download="Road-User-Handbook-English.pdf">
                                     <Download className="h-5 w-5 mr-2" />Download Handbook (PDF)
                                 </a>
                             </Button>
                             <Button variant="outline" className="border-[#1B7640] text-[#1B7640] hover:bg-[#1B7640] hover:text-white h-12 px-6" asChild>
-                                <a href="https://www.transport.nsw.gov.au/roads-and-waterways/drivers-and-licences/new-drivers/driver-knowledge-test" target="_blank" rel="noopener noreferrer">
+                                <a href="/documents/Road-User-Handbook-English.pdf" target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="h-5 w-5 mr-2" />View Online
                                 </a>
                             </Button>
