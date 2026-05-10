@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 
 import { AuthProvider } from "@/providers/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         )}
       >
         <AuthProvider>
+          <ScrollToTop />
           <Navbar />
           <main className="flex-grow">
             {children}
