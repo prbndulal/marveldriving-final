@@ -70,11 +70,11 @@ export function Navbar() {
                 <div className="flex items-center justify-between px-4 py-3 bg-white">
                     {/* Hamburger Menu */}
                     <button
-                        className="p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors"
+                        className="p-2 rounded-lg text-[#1B7640] hover:bg-[#1B7640]/10 transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                     >
-                        {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+                        {isMobileMenuOpen ? <X className="h-7 w-7 text-[#1B7640]" /> : <Menu className="h-7 w-7 text-[#1B7640]" />}
                     </button>
 
                     {/* Centered Logo */}
@@ -108,7 +108,7 @@ export function Navbar() {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="relative z-50 overflow-hidden bg-background max-h-[calc(100vh-76px)] overflow-y-auto"
+                                className="relative z-50 overflow-hidden bg-white max-h-[calc(100vh-76px)] overflow-y-auto border-t border-gray-100"
                             >
                                 {/* Quick Action Buttons */}
                                 <div className="px-4 pt-4 pb-2 space-y-2">
@@ -134,7 +134,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             Home
@@ -147,7 +147,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/about"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             About Us
@@ -159,7 +159,7 @@ export function Navbar() {
                                             onClick={() => setIsServicesOpen(!isServicesOpen)}
                                             className={`w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all ${isServiceActive
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             <span>Our Services</span>
@@ -184,7 +184,7 @@ export function Navbar() {
                                                                         setIsMobileMenuOpen(false);
                                                                         setIsServicesOpen(false);
                                                                     }}
-                                                                    className="block px-4 py-2 rounded-lg font-medium transition-all text-foreground hover:bg-secondary text-sm"
+                                                                    className="block px-4 py-2 rounded-lg font-medium transition-all text-gray-700 hover:bg-gray-50 text-sm"
                                                                 >
                                                                     {link.label}
                                                                 </a>
@@ -197,7 +197,7 @@ export function Navbar() {
                                                                     }}
                                                                     className={`block px-4 py-2 rounded-lg font-medium transition-all text-sm ${pathname === link.href
                                                                             ? "bg-[#1B7640]/10 text-[#1B7640] font-bold"
-                                                                            : "text-foreground hover:bg-secondary"
+                                                                            : "text-gray-800 hover:bg-gray-50"
                                                                         }`}
                                                                 >
                                                                     {link.label}
@@ -216,7 +216,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/gallery"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             Gallery
@@ -229,7 +229,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/blog"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             Blog
@@ -242,7 +242,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/faq"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             FAQ
@@ -255,7 +255,7 @@ export function Navbar() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={`block px-4 py-3 rounded-lg font-medium transition-all ${pathname === "/contact"
                                                     ? "bg-[#1B7640] text-white"
-                                                    : "text-foreground hover:bg-secondary"
+                                                    : "text-gray-800 hover:bg-gray-50"
                                                 }`}
                                         >
                                             Contact Us
