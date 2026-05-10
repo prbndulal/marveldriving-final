@@ -51,7 +51,7 @@ export function P1LicenceGuide({ compact }: Props) {
 
             <div className="mt-auto relative z-10">
                 <Button className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-12 shadow-md hover:shadow-lg transition-all" asChild>
-                    <Link href="/blog/p1-licence-guide">
+                    <Link href="/dkt">
                         <BookOpen className="h-4 w-4 mr-2" />
                         Read the Guide
                     </Link>
