@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ServiceAreaBanner } from "@/components/ServiceAreaBanner";
+import { PageHero } from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 
 import { Calendar } from "@/components/ui/calendar";
@@ -53,7 +54,7 @@ const serviceTypes = [
         value: "test-package",
         label: "Driving Test Package",
         description: "1hr pickup, 45min warm-up, use of instructor's vehicle for test",
-        price: "$210",
+        price: "$220",
         isPaid: true,
         icon: FileCheck
     },
@@ -75,11 +76,17 @@ const serviceTypes = [
     },
 ];
 
-const stepInfo = [
+const stepInfoDefault = [
     { num: 1, label: "Service", icon: Car },
     { num: 2, label: "Schedule", icon: CalendarIcon },
     { num: 3, label: "Details", icon: User },
     { num: 4, label: "Confirm", icon: CheckCircle },
+];
+
+const stepInfoTestPackage = [
+    { num: 1, label: "Service", icon: Car },
+    { num: 2, label: "Details", icon: User },
+    { num: 3, label: "Checkout", icon: CreditCard },
 ];
 
 function BookingContent() {
@@ -255,9 +262,11 @@ function BookingContent() {
         }
     };
 
+    const isTestPackage = formData.serviceType === "test-package";
     const isNDISService = formData.serviceType === "ndis-lesson" || formData.serviceType === "ndis-transport";
     const isPaidService = serviceTypes.find(s => s.value === formData.serviceType)?.isPaid;
     const selectedService = serviceTypes.find(s => s.value === formData.serviceType);
+    const currentStepInfo = isTestPackage ? stepInfoTestPackage : stepInfoDefault;
 
     const { slots: availableSlots, loading: slotsLoading } = useAvailability(formData.lessonDate);
 
@@ -265,33 +274,14 @@ function BookingContent() {
         <div className="bg-background min-h-screen">
             <ServiceAreaBanner />
 
-            <section className="relative py-20 md:py-28 bg-gradient-hero overflow-hidden text-white">
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-                    <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-                </div>
-
-                <div className="container relative z-10 mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-3xl mx-auto text-center"
-                    >
-                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                            <Sparkles className="h-4 w-4 text-yellow-400" />
-                            <span className="text-sm font-medium">Easy Online Booking</span>
-                        </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-                            Book Your Lesson
-                        </h1>
-                        <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-                            Start your journey to independence with Marvel Driving.
-                            Secure booking, professional instructors, guaranteed satisfaction.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                badge="Easy Online Booking"
+                titleStart="Book Your"
+                titleAccent="Lesson"
+                description="Start your journey to independence with Marvel Driving. Secure booking, professional instructors, guaranteed satisfaction."
+                bannerImage="/hero-dashboard.jpg"
+                imageAlt="Book a driving lesson with Marvel Driving"
+            />
 
             <section className="py-4 bg-yellow-50 border-y border-yellow-100">
                 <div className="container mx-auto px-4">
@@ -307,7 +297,7 @@ function BookingContent() {
             <section className="py-8 md:py-10 bg-white border-b border-gray-100">
                 <div className="container mx-auto px-4">
                     <div className="flex justify-center items-center gap-2 md:gap-4 max-w-2xl mx-auto">
-                        {stepInfo.map((s, i) => {
+                        {currentStepInfo.map((s, i) => {
                             const Icon = s.icon;
                             const isActive = step === s.num;
                             const isCompleted = step > s.num;
@@ -338,7 +328,7 @@ function BookingContent() {
                                             {s.label}
                                         </span>
                                     </div>
-                                    {i < stepInfo.length - 1 && (
+                                    {i < currentStepInfo.length - 1 && (
                                         <div className={cn(
                                             "w-8 md:w-16 h-1 mx-2 md:mx-3 rounded-full transition-colors",
                                             step > s.num ? "bg-[#1B7640]" : "bg-gray-200"
@@ -353,7 +343,7 @@ function BookingContent() {
 
             <section className="py-12 md:py-16 bg-gray-50/50">
                 <div className="container mx-auto px-4">
-                    <div className="max-w-2xl mx-auto">
+                    <div className={cn("mx-auto", isTestPackage && step === 3 ? "max-w-5xl" : "max-w-2xl")}>
                         <motion.div
                             key={step}
                             initial={{ opacity: 0, y: 20 }}
@@ -437,7 +427,7 @@ function BookingContent() {
                                 </div>
                             )}
 
-                            {step === 2 && (
+                            {step === 2 && !isTestPackage && (
                                 <div>
                                     <div className="text-center mb-8">
                                         <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -556,7 +546,7 @@ function BookingContent() {
                                 </div>
                             )}
 
-                            {step === 3 && (
+                            {((step === 3 && !isTestPackage) || (step === 2 && isTestPackage)) && (
                                 <div>
                                     <div className="text-center mb-8">
                                         <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -703,11 +693,11 @@ function BookingContent() {
                                     </div>
 
                                     <div className="mt-8 flex justify-between">
-                                        <Button variant="outline" onClick={() => setStep(2)} size="lg">
+                                        <Button variant="outline" onClick={() => setStep(isTestPackage ? 1 : 2)} size="lg">
                                             Back
                                         </Button>
                                         <Button
-                                            onClick={() => setStep(4)}
+                                            onClick={() => setStep(isTestPackage ? 3 : 4)}
                                             disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.suburb}
                                             size="lg"
                                             className="px-8 bg-[#1B7640] hover:bg-[#153e1e]"
@@ -719,7 +709,123 @@ function BookingContent() {
                                 </div>
                             )}
 
-                            {step === 4 && (
+                            {/* Shopping Cart — Test Package only (step 3) */}
+                            {step === 3 && isTestPackage && (
+                                <form onSubmit={handleSubmit}>
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#0d4a28]">Shopping Cart</h2>
+
+                                    {/* Cart Table */}
+                                    <div className="overflow-x-auto mb-8 rounded-md">
+                                        <table className="w-full border-collapse">
+                                            <thead>
+                                                <tr className="bg-gray-700 text-white">
+                                                    <th className="text-left px-5 py-3 text-sm font-semibold">Product</th>
+                                                    <th className="text-center px-5 py-3 text-sm font-semibold">Quantity</th>
+                                                    <th className="text-right px-5 py-3 text-sm font-semibold">Unit Price</th>
+                                                    <th className="text-right px-5 py-3 text-sm font-semibold">GST</th>
+                                                    <th className="text-right px-5 py-3 text-sm font-semibold">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className="border-b border-gray-100">
+                                                    <td className="px-5 py-5">
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="w-16 h-16 bg-[#dc2626]/10 border border-gray-100 rounded-md flex items-center justify-center flex-shrink-0">
+                                                                <FileCheck className="h-8 w-8 text-[#dc2626]" />
+                                                            </div>
+                                                            <div>
+                                                                <p className="font-semibold text-base">Driving Test Package</p>
+                                                                <p className="text-xs text-gray-500">Pickup, warm-up &amp; vehicle for test</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-5 py-5 text-center">
+                                                        <input type="number" value={1} readOnly className="w-20 h-10 text-center border border-gray-200 rounded-md text-base font-medium bg-white focus:outline-none" />
+                                                    </td>
+                                                    <td className="px-5 py-5 text-right text-base">$220.00</td>
+                                                    <td className="px-5 py-5 text-right text-base">$20.00</td>
+                                                    <td className="px-5 py-5 text-right text-base font-semibold">$220.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    {/* Totals */}
+                                    <div className="flex justify-end mb-8">
+                                        <div className="w-full md:w-96 space-y-3">
+                                            <div className="flex justify-between items-center text-base">
+                                                <span className="font-semibold">GST Included:</span>
+                                                <span className="font-semibold">$20.00</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-base">
+                                                <span className="font-semibold">Card Processing Fee:</span>
+                                                <span className="font-semibold">$4.40</span>
+                                            </div>
+                                            <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
+                                                <span className="text-xl font-bold">Total:</span>
+                                                <span className="text-xl font-bold">$224.40</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Customer info summary */}
+                                    <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
+                                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-[#0d4a28]">
+                                            <User className="h-4 w-4 text-[#1B7640]" />
+                                            Customer Details
+                                        </h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                                            <p><span className="text-gray-500">Name:</span> {formData.firstName} {formData.lastName}</p>
+                                            <p><span className="text-gray-500">Email:</span> {formData.email}</p>
+                                            <p><span className="text-gray-500">Phone:</span> {formData.phone}</p>
+                                            <p><span className="text-gray-500">Suburb:</span> {formData.suburb}, NSW</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Terms */}
+                                    <label className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl mb-6 cursor-pointer border border-gray-100 hover:bg-gray-100 transition-colors">
+                                        <input
+                                            type="checkbox"
+                                            checked={formData.termsAccepted}
+                                            onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
+                                            className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
+                                            required
+                                        />
+                                        <span className="text-sm text-gray-500 leading-relaxed">
+                                            I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms &amp; Conditions</Link> and{" "}
+                                            <Link href="/privacy" className="text-[#1B7640] font-medium hover:underline">Privacy Policy</Link>.{" "}
+                                            I understand that <strong className="text-red-600">all bookings are final with no refunds, no cancellations and no rescheduling</strong>.
+                                            I consent to Marvel Driving contacting me regarding this booking.
+                                        </span>
+                                    </label>
+
+                                    {/* Actions */}
+                                    <div className="flex flex-col sm:flex-row justify-between gap-4 pt-2">
+                                        <Button
+                                            type="button"
+                                            onClick={() => setStep(2)}
+                                            size="lg"
+                                            className="border-2 border-[#dc2626] bg-transparent text-[#dc2626] hover:bg-[#dc2626] hover:text-white rounded-md px-10 font-semibold"
+                                        >
+                                            Keep Shopping
+                                        </Button>
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            disabled={!formData.termsAccepted || isSubmitting}
+                                            className="bg-[#dc2626] hover:bg-[#b91c1c] text-white rounded-md px-12 font-semibold shadow-lg"
+                                        >
+                                            {isSubmitting ? (
+                                                <><Loader2 className="h-5 w-5 animate-spin mr-2" />Processing...</>
+                                            ) : (
+                                                <>Check Out</>
+                                            )}
+                                        </Button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 4 && !isTestPackage && (
                                 <form onSubmit={handleSubmit}>
                                     <div className="text-center mb-8">
                                         <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
