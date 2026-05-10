@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { format, getDay, addMinutes, isBefore, set } from 'date-fns';
+import { format, addMinutes, isBefore, set } from 'date-fns';
 
 export async function GET(req: Request) {
     try {
@@ -11,22 +11,26 @@ export async function GET(req: Request) {
             return NextResponse.json({ error: "Missing date parameter" }, { status: 400 });
         }
 
-        const date = new Date(dateStr);
-        const dayOfWeek = getDay(date);
+        // Parse as local date to avoid UTC off-by-one day issues
+        const [year, month, day] = dateStr.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+        const dayOfWeek = date.getDay();
 
-        // 1. Fetch configured availability for this day
+        // Fetch rule for this day regardless of isActive
         const rule = await prisma.availability.findFirst({
-            where: {
-                dayOfWeek: dayOfWeek,
-                isActive: true
-            }
+            where: { dayOfWeek }
         });
 
-        // 2. Fetch confirmed bookings + pending bookings created within the last 15 minutes
+        // Day has no rule or is explicitly inactive → no slots
+        if (!rule || !rule.isActive) {
+            return NextResponse.json({ slots: [] });
+        }
+
+        // Fetch bookings on this date (confirmed + recent pending)
         const pendingCutoff = new Date(Date.now() - 15 * 60 * 1000);
         const bookings = await prisma.booking.findMany({
             where: {
-                date: new Date(dateStr),
+                date: new Date(year, month - 1, day),
                 OR: [
                     { status: 'confirmed' },
                     { status: 'pending', createdAt: { gte: pendingCutoff } }
@@ -37,15 +41,9 @@ export async function GET(req: Request) {
 
         const bookedTimes = new Set(bookings.map(b => b.time));
 
-        // 3. Generate slots using logic
-        let startH = 7, startM = 0, endH = 18, endM = 0;
-
-        if (rule) {
-            const [sh, sm] = rule.startTime.split(':').map(Number);
-            const [eh, em] = rule.endTime.split(':').map(Number);
-            startH = sh; startM = sm;
-            endH = eh; endM = em;
-        }
+        // Generate hourly slots between startTime and endTime
+        const [startH, startM] = rule.startTime.split(':').map(Number);
+        const [endH, endM] = rule.endTime.split(':').map(Number);
 
         const baseDate = set(date, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
         let current = set(baseDate, { hours: startH, minutes: startM });
@@ -53,15 +51,12 @@ export async function GET(req: Request) {
 
         const slots = [];
         while (isBefore(current, end)) {
-            const timeStr = format(current, 'HH:mm'); // Needs to match how time is stored
-            const displayTime = format(current, 'h:mm a');
-
+            const timeStr = format(current, 'HH:mm');
             slots.push({
                 time: timeStr,
-                displayTime: displayTime,
-                available: !bookedTimes.has(timeStr) // Should actually match precisely. HH:MM vs HH:MM:SS
+                displayTime: format(current, 'h:mm a'),
+                available: !bookedTimes.has(timeStr),
             });
-
             current = addMinutes(current, 60);
         }
 

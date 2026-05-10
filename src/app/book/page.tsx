@@ -520,7 +520,7 @@ function BookingContent() {
                                                 {formData.lessonDate && !slotsLoading && availableSlots.length === 0 && (
                                                     <p className="text-sm text-red-500 flex items-center gap-1">
                                                         <AlertCircle className="h-3 w-3" />
-                                                        No availability set for this day.
+                                                        We don't take bookings on this day. Please choose another date.
                                                     </p>
                                                 )}
                                                 {formData.lessonDate && !slotsLoading && availableSlots.length > 0 && availableSlots.every(s => !s.available) && (
