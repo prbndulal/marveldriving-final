@@ -21,7 +21,7 @@ import {
     Sparkles,
     FileCheck
 } from "lucide-react";
-import { addDays, format, isBefore, startOfDay, parse } from "date-fns";
+import { addDays, format, isBefore, startOfDay } from "date-fns";
 import { useAvailability } from "@/hooks/useAvailability";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,6 +32,7 @@ import { PageHero } from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 
 import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import {
     Select,
@@ -446,15 +447,32 @@ function BookingContent() {
                                                     <CalendarIcon className="h-4 w-4 text-[#1B7640]" />
                                                     Lesson Date
                                                 </Label>
-                                                <div className="border rounded-xl p-4 bg-white shadow-sm flex justify-center">
-                                                    <Calendar
-                                                        mode="single"
-                                                        selected={formData.lessonDate || undefined}
-                                                        onSelect={(date) => setFormData({ ...formData, lessonDate: date || null, lessonTime: "" })}
-                                                        disabled={(date) => isBefore(date, minBookingDate)}
-                                                        className="rounded-md border-0"
-                                                    />
-                                                </div>
+                                                <Popover>
+                                                    <PopoverTrigger asChild>
+                                                        <Button
+                                                            variant="outline"
+                                                            className={cn(
+                                                                "w-full h-12 justify-start text-left font-normal text-base",
+                                                                !formData.lessonDate && "text-gray-400"
+                                                            )}
+                                                        >
+                                                            <CalendarIcon className="mr-2 h-4 w-4" />
+                                                            {formData.lessonDate
+                                                                ? format(formData.lessonDate, "EEEE, d MMMM yyyy")
+                                                                : <span>Select a date</span>}
+                                                        </Button>
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-auto p-0" align="start">
+                                                        <Calendar
+                                                            mode="single"
+                                                            selected={formData.lessonDate || undefined}
+                                                            onSelect={(date) => setFormData({ ...formData, lessonDate: date || null, lessonTime: "" })}
+                                                            disabled={(date) => isBefore(date, minBookingDate)}
+                                                            initialFocus
+                                                            className="pointer-events-auto"
+                                                        />
+                                                    </PopoverContent>
+                                                </Popover>
                                                 <p className="text-xs text-gray-500 flex items-center gap-1">
                                                     <Clock className="h-3 w-3" />
                                                     Bookings require 24 hours advance notice
@@ -709,266 +727,263 @@ function BookingContent() {
                                 </div>
                             )}
 
-                            {/* Shopping Cart — Test Package only (step 3) */}
-                            {step === 3 && isTestPackage && (
+                            {/* Step 3 (test-package cart) or Step 4 (regular review) */}
+                            {((step === 4 && !isTestPackage) || (step === 3 && isTestPackage)) && (
                                 <form onSubmit={handleSubmit}>
-                                    <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#0d4a28]">Shopping Cart</h2>
+                                    {isTestPackage ? (
+                                        /* Shopping Cart View — Test Package */
+                                        <div>
+                                            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#0d4a28]">Shopping Cart</h2>
 
-                                    {/* Cart Table */}
-                                    <div className="overflow-x-auto mb-8 rounded-md">
-                                        <table className="w-full border-collapse">
-                                            <thead>
-                                                <tr className="bg-gray-700 text-white">
-                                                    <th className="text-left px-5 py-3 text-sm font-semibold">Product</th>
-                                                    <th className="text-center px-5 py-3 text-sm font-semibold">Quantity</th>
-                                                    <th className="text-right px-5 py-3 text-sm font-semibold">Unit Price</th>
-                                                    <th className="text-right px-5 py-3 text-sm font-semibold">GST</th>
-                                                    <th className="text-right px-5 py-3 text-sm font-semibold">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr className="border-b border-gray-100">
-                                                    <td className="px-5 py-5">
-                                                        <div className="flex items-center gap-4">
-                                                            <div className="w-16 h-16 bg-[#dc2626]/10 border border-gray-100 rounded-md flex items-center justify-center flex-shrink-0">
-                                                                <FileCheck className="h-8 w-8 text-[#dc2626]" />
-                                                            </div>
-                                                            <div>
-                                                                <p className="font-semibold text-base">Driving Test Package</p>
-                                                                <p className="text-xs text-gray-500">Pickup, warm-up &amp; vehicle for test</p>
-                                                            </div>
+                                            <div className="overflow-x-auto mb-8 rounded-md">
+                                                <table className="w-full border-collapse">
+                                                    <thead>
+                                                        <tr className="bg-gray-700 text-white">
+                                                            <th className="text-left px-5 py-3 text-sm font-semibold">Product</th>
+                                                            <th className="text-center px-5 py-3 text-sm font-semibold">Quantity</th>
+                                                            <th className="text-right px-5 py-3 text-sm font-semibold">Unit Price</th>
+                                                            <th className="text-right px-5 py-3 text-sm font-semibold">GST</th>
+                                                            <th className="text-right px-5 py-3 text-sm font-semibold">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr className="border-b border-gray-100">
+                                                            <td className="px-5 py-5">
+                                                                <div className="flex items-center gap-4">
+                                                                    <div className="w-16 h-16 bg-[#dc2626]/10 border border-gray-100 rounded-md flex items-center justify-center flex-shrink-0">
+                                                                        <FileCheck className="h-8 w-8 text-[#dc2626]" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <p className="font-semibold text-base">Driving Test Package</p>
+                                                                        <p className="text-xs text-gray-500">Pickup, warm-up &amp; vehicle for test</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className="px-5 py-5 text-center">
+                                                                <input type="number" value={1} readOnly className="w-20 h-10 text-center border border-gray-200 rounded-md text-base font-medium bg-white focus:outline-none" />
+                                                            </td>
+                                                            <td className="px-5 py-5 text-right text-base">$220.00</td>
+                                                            <td className="px-5 py-5 text-right text-base">$20.00</td>
+                                                            <td className="px-5 py-5 text-right text-base font-semibold">$220.00</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div className="flex justify-end mb-8">
+                                                <div className="w-full md:w-96 space-y-3">
+                                                    <div className="flex justify-between items-center text-base">
+                                                        <span className="font-semibold">GST Included:</span>
+                                                        <span className="font-semibold">$20.00</span>
+                                                    </div>
+                                                    <div className="flex justify-between items-center text-base">
+                                                        <span className="font-semibold">Card Processing Fee:</span>
+                                                        <span className="font-semibold">$4.40</span>
+                                                    </div>
+                                                    <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
+                                                        <span className="text-xl font-bold">Total:</span>
+                                                        <span className="text-xl font-bold">$224.40</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
+                                                <h3 className="font-semibold mb-3 flex items-center gap-2 text-[#0d4a28]">
+                                                    <User className="h-4 w-4 text-[#1B7640]" />
+                                                    Customer Details
+                                                </h3>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                                                    <p><span className="text-gray-500">Name:</span> {formData.firstName} {formData.lastName}</p>
+                                                    <p><span className="text-gray-500">Email:</span> {formData.email}</p>
+                                                    <p><span className="text-gray-500">Phone:</span> {formData.phone}</p>
+                                                    <p><span className="text-gray-500">Suburb:</span> {formData.suburb}, NSW</p>
+                                                </div>
+                                            </div>
+
+                                            <label className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl mb-6 cursor-pointer border border-gray-100 hover:bg-gray-100 transition-colors">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={formData.termsAccepted}
+                                                    onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
+                                                    className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
+                                                    required
+                                                />
+                                                <span className="text-sm text-gray-500 leading-relaxed">
+                                                    I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms &amp; Conditions</Link> and{" "}
+                                                    <Link href="/privacy" className="text-[#1B7640] font-medium hover:underline">Privacy Policy</Link>.{" "}
+                                                    I understand that <strong className="text-red-600">all bookings are final with no refunds, no cancellations and no rescheduling</strong>.
+                                                    I consent to Marvel Driving contacting me regarding this booking.
+                                                </span>
+                                            </label>
+
+                                            <div className="flex flex-col sm:flex-row justify-between gap-4 pt-2">
+                                                <Button
+                                                    type="button"
+                                                    onClick={() => setStep(2)}
+                                                    size="lg"
+                                                    className="border-2 border-[#dc2626] bg-transparent text-[#dc2626] hover:bg-[#dc2626] hover:text-white rounded-md px-10 font-semibold"
+                                                >
+                                                    Keep Shopping
+                                                </Button>
+                                                <Button
+                                                    type="submit"
+                                                    size="lg"
+                                                    disabled={!formData.termsAccepted || isSubmitting}
+                                                    className="bg-[#dc2626] hover:bg-[#b91c1c] text-white rounded-md px-12 font-semibold shadow-lg"
+                                                >
+                                                    {isSubmitting ? (
+                                                        <><Loader2 className="h-5 w-5 animate-spin mr-2" />Processing...</>
+                                                    ) : (
+                                                        <>Check Out</>
+                                                    )}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        /* Regular Review & Confirm */
+                                        <div>
+                                            <div className="text-center mb-8">
+                                                <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                                    <CheckCircle className="h-7 w-7 text-[#1B7640]" />
+                                                </div>
+                                                <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                                                    Review & {isPaidService ? "Pay" : "Confirm"}
+                                                </h2>
+                                                <p className="text-gray-500">
+                                                    Verify your booking details before {isPaidService ? "proceeding to payment" : "confirming"}
+                                                </p>
+                                            </div>
+
+                                            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-100">
+                                                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                                                    <Sparkles className="h-5 w-5 text-[#1B7640]" />
+                                                    Booking Summary
+                                                </h3>
+                                                <div className="space-y-4">
+                                                    <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
+                                                        <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                            <Car className="h-5 w-5 text-[#1B7640]" />
                                                         </div>
-                                                    </td>
-                                                    <td className="px-5 py-5 text-center">
-                                                        <input type="number" value={1} readOnly className="w-20 h-10 text-center border border-gray-200 rounded-md text-base font-medium bg-white focus:outline-none" />
-                                                    </td>
-                                                    <td className="px-5 py-5 text-right text-base">$220.00</td>
-                                                    <td className="px-5 py-5 text-right text-base">$20.00</td>
-                                                    <td className="px-5 py-5 text-right text-base font-semibold">$220.00</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    {/* Totals */}
-                                    <div className="flex justify-end mb-8">
-                                        <div className="w-full md:w-96 space-y-3">
-                                            <div className="flex justify-between items-center text-base">
-                                                <span className="font-semibold">GST Included:</span>
-                                                <span className="font-semibold">$20.00</span>
+                                                        <div>
+                                                            <p className="text-sm text-gray-500">Service</p>
+                                                            <p className="font-semibold">{selectedService?.label}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
+                                                        <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                            <CalendarIcon className="h-5 w-5 text-[#1B7640]" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-sm text-gray-500">Date & Time</p>
+                                                            <p className="font-semibold">
+                                                                {formData.lessonDate ? format(formData.lessonDate, "EEEE, d MMMM yyyy") : ""} at {availableSlots.find(s => s.time === formData.lessonTime)?.displayTime ?? formData.lessonTime}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
+                                                        <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                            <User className="h-5 w-5 text-[#1B7640]" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-sm text-gray-500">Contact</p>
+                                                            <p className="font-semibold">{formData.firstName} {formData.lastName}</p>
+                                                            <p className="text-sm text-gray-500">{formData.email}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
+                                                        <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                            <MapPin className="h-5 w-5 text-[#1B7640]" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-sm text-gray-500">Pickup Location</p>
+                                                            <p className="font-semibold">{formData.suburb}, NSW</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center justify-between p-4 bg-[#1B7640]/10 rounded-xl border-2 border-[#1B7640]/20">
+                                                        <div className="flex items-center gap-3">
+                                                            <CreditCard className="h-5 w-5 text-[#1B7640]" />
+                                                            <span className="font-semibold">Total Price</span>
+                                                        </div>
+                                                        <span className="text-xl font-bold text-[#1B7640]">{selectedService?.price}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="flex justify-between items-center text-base">
-                                                <span className="font-semibold">Card Processing Fee:</span>
-                                                <span className="font-semibold">$4.40</span>
+
+                                            <div className="space-y-2 mb-6">
+                                                <Label htmlFor="notes" className="font-semibold">Additional Notes (Optional)</Label>
+                                                <Textarea
+                                                    id="notes"
+                                                    value={formData.notes}
+                                                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                                                    placeholder="Any special requests or information we should know..."
+                                                    rows={3}
+                                                    className="resize-none"
+                                                />
                                             </div>
-                                            <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
-                                                <span className="text-xl font-bold">Total:</span>
-                                                <span className="text-xl font-bold">$224.40</span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    {/* Customer info summary */}
-                                    <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
-                                        <h3 className="font-semibold mb-3 flex items-center gap-2 text-[#0d4a28]">
-                                            <User className="h-4 w-4 text-[#1B7640]" />
-                                            Customer Details
-                                        </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                                            <p><span className="text-gray-500">Name:</span> {formData.firstName} {formData.lastName}</p>
-                                            <p><span className="text-gray-500">Email:</span> {formData.email}</p>
-                                            <p><span className="text-gray-500">Phone:</span> {formData.phone}</p>
-                                            <p><span className="text-gray-500">Suburb:</span> {formData.suburb}, NSW</p>
-                                        </div>
-                                    </div>
+                                            <label className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl mb-6 cursor-pointer border border-gray-100 hover:bg-gray-100 transition-colors">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={formData.termsAccepted}
+                                                    onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
+                                                    className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
+                                                    required
+                                                />
+                                                <span className="text-sm text-gray-500 leading-relaxed">
+                                                    I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms & Conditions</Link> and
+                                                    understand that all lessons are conducted in automatic transmission vehicles only.
+                                                    I consent to Marvel Driving contacting me regarding this booking.
+                                                </span>
+                                            </label>
 
-                                    {/* Terms */}
-                                    <label className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl mb-6 cursor-pointer border border-gray-100 hover:bg-gray-100 transition-colors">
-                                        <input
-                                            type="checkbox"
-                                            checked={formData.termsAccepted}
-                                            onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
-                                            className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
-                                            required
-                                        />
-                                        <span className="text-sm text-gray-500 leading-relaxed">
-                                            I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms &amp; Conditions</Link> and{" "}
-                                            <Link href="/privacy" className="text-[#1B7640] font-medium hover:underline">Privacy Policy</Link>.{" "}
-                                            I understand that <strong className="text-red-600">all bookings are final with no refunds, no cancellations and no rescheduling</strong>.
-                                            I consent to Marvel Driving contacting me regarding this booking.
-                                        </span>
-                                    </label>
-
-                                    {/* Actions */}
-                                    <div className="flex flex-col sm:flex-row justify-between gap-4 pt-2">
-                                        <Button
-                                            type="button"
-                                            onClick={() => setStep(2)}
-                                            size="lg"
-                                            className="border-2 border-[#dc2626] bg-transparent text-[#dc2626] hover:bg-[#dc2626] hover:text-white rounded-md px-10 font-semibold"
-                                        >
-                                            Keep Shopping
-                                        </Button>
-                                        <Button
-                                            type="submit"
-                                            size="lg"
-                                            disabled={!formData.termsAccepted || isSubmitting}
-                                            className="bg-[#dc2626] hover:bg-[#b91c1c] text-white rounded-md px-12 font-semibold shadow-lg"
-                                        >
-                                            {isSubmitting ? (
-                                                <><Loader2 className="h-5 w-5 animate-spin mr-2" />Processing...</>
-                                            ) : (
-                                                <>Check Out</>
+                                            {isPaidService && (
+                                                <div className="mb-6 p-5 bg-gradient-to-r from-yellow-50 to-yellow-50/50 border border-yellow-200 rounded-xl">
+                                                    <div className="flex items-center gap-3 mb-3">
+                                                        <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                                            <Shield className="h-5 w-5 text-yellow-700" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="font-semibold text-yellow-900">Secure Payment via Stripe</p>
+                                                            <p className="text-sm text-yellow-700">Your payment details are encrypted</p>
+                                                        </div>
+                                                    </div>
+                                                    <p className="text-sm text-yellow-800">
+                                                        You'll be redirected to Stripe's secure checkout page.
+                                                        We accept Visa, Mastercard, American Express, Apple Pay & Google Pay.
+                                                    </p>
+                                                </div>
                                             )}
-                                        </Button>
-                                    </div>
-                                </form>
-                            )}
 
-                            {step === 4 && !isTestPackage && (
-                                <form onSubmit={handleSubmit}>
-                                    <div className="text-center mb-8">
-                                        <div className="w-14 h-14 bg-[#1B7640]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <CheckCircle className="h-7 w-7 text-[#1B7640]" />
-                                        </div>
-                                        <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                                            Review & {isPaidService ? "Pay" : "Confirm"}
-                                        </h2>
-                                        <p className="text-gray-500">
-                                            Verify your booking details before {isPaidService ? "proceeding to payment" : "confirming"}
-                                        </p>
-                                    </div>
-
-                                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 mb-6 border border-gray-100">
-                                        <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                                            <Sparkles className="h-5 w-5 text-[#1B7640]" />
-                                            Booking Summary
-                                        </h3>
-                                        <div className="space-y-4">
-                                            <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <Car className="h-5 w-5 text-[#1B7640]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-gray-500">Service</p>
-                                                    <p className="font-semibold">{selectedService?.label}</p>
-                                                </div>
+                                            <div className="flex flex-col gap-4">
+                                                <Button
+                                                    type="submit"
+                                                    size="lg"
+                                                    disabled={!formData.termsAccepted || isSubmitting}
+                                                    className="w-full text-lg py-6 bg-[#1B7640] hover:bg-[#153e1e]"
+                                                >
+                                                    {isSubmitting ? (
+                                                        <>
+                                                            <Loader2 className="h-6 w-6 animate-spin mr-2" />
+                                                            Processing...
+                                                        </>
+                                                    ) : isPaidService ? (
+                                                        <>
+                                                            <CreditCard className="h-6 w-6 mr-2" />
+                                                            Pay & Confirm Booking — {selectedService?.price.split('/').shift()}
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <CheckCircle className="h-6 w-6 mr-2" />
+                                                            Submit Request
+                                                        </>
+                                                    )}
+                                                </Button>
+                                                <Button variant="outline" type="button" onClick={() => setStep(3)} size="lg" className="w-full">
+                                                    Back
+                                                </Button>
                                             </div>
-
-                                            <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <CalendarIcon className="h-5 w-5 text-[#1B7640]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-gray-500">Date & Time</p>
-                                                    <p className="font-semibold">{formData.lessonDate ? format(formData.lessonDate, "EEEE, d MMMM yyyy") : ""} at {formData.lessonTime ? format(parse(formData.lessonTime, 'HH:mm', new Date()), 'h:mm a') : ""}</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <User className="h-5 w-5 text-[#1B7640]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-gray-500">Contact</p>
-                                                    <p className="font-semibold">{formData.firstName} {formData.lastName}</p>
-                                                    <p className="text-sm text-gray-500">{formData.email}</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start gap-4 p-3 bg-white rounded-xl border border-gray-100">
-                                                <div className="w-10 h-10 bg-[#1B7640]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                    <MapPin className="h-5 w-5 text-[#1B7640]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-gray-500">Pickup Location</p>
-                                                    <p className="font-semibold">{formData.suburb}, NSW</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-center justify-between p-4 bg-[#1B7640]/10 rounded-xl border-2 border-[#1B7640]/20">
-                                                <div className="flex items-center gap-3">
-                                                    <CreditCard className="h-5 w-5 text-[#1B7640]" />
-                                                    <span className="font-semibold">Total Price</span>
-                                                </div>
-                                                <span className="text-xl font-bold text-[#1B7640]">{selectedService?.price}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2 mb-6">
-                                        <Label htmlFor="notes" className="font-semibold">Additional Notes (Optional)</Label>
-                                        <Textarea
-                                            id="notes"
-                                            value={formData.notes}
-                                            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                            placeholder="Any special requests or information we should know..."
-                                            rows={3}
-                                            className="resize-none"
-                                        />
-                                    </div>
-
-                                    <label className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl mb-6 cursor-pointer border border-gray-100 hover:bg-gray-100 transition-colors">
-                                        <input
-                                            type="checkbox"
-                                            checked={formData.termsAccepted}
-                                            onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })}
-                                            className="mt-1 h-4 w-4 rounded border-[#1B7640] text-[#1B7640] focus:ring-[#1B7640]"
-                                            required
-                                        />
-                                        <span className="text-sm text-gray-500 leading-relaxed">
-                                            I agree to the <Link href="/terms" className="text-[#1B7640] font-medium hover:underline">Terms & Conditions</Link> and
-                                            understand that all lessons are conducted in automatic transmission vehicles only.
-                                            I consent to Marvel Driving contacting me regarding this booking.
-                                        </span>
-                                    </label>
-
-                                    {isPaidService && (
-                                        <div className="mb-6 p-5 bg-gradient-to-r from-yellow-50 to-yellow-50/50 border border-yellow-200 rounded-xl">
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                                    <Shield className="h-5 w-5 text-yellow-700" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-semibold text-yellow-900">Secure Payment via Stripe</p>
-                                                    <p className="text-sm text-yellow-700">Your payment details are encrypted</p>
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-yellow-800">
-                                                You'll be redirected to Stripe's secure checkout page.
-                                                We accept Visa, Mastercard, American Express, Apple Pay & Google Pay.
-                                            </p>
                                         </div>
                                     )}
-
-                                    <div className="flex flex-col gap-4">
-                                        <Button
-                                            type="submit"
-                                            size="lg"
-                                            disabled={!formData.termsAccepted || isSubmitting}
-                                            className="w-full text-lg py-6 bg-[#1B7640] hover:bg-[#153e1e]"
-                                        >
-                                            {isSubmitting ? (
-                                                <>
-                                                    <Loader2 className="h-6 w-6 animate-spin mr-2" />
-                                                    Processing...
-                                                </>
-                                            ) : isPaidService ? (
-                                                <>
-                                                    <CreditCard className="h-6 w-6 mr-2" />
-                                                    Pay & Confirm Booking — {selectedService?.price.split('/').shift()}
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <CheckCircle className="h-6 w-6 mr-2" />
-                                                    Submit Request
-                                                </>
-                                            )}
-                                        </Button>
-                                        <Button variant="outline" type="button" onClick={() => setStep(3)} size="lg" className="w-full">
-                                            Back
-                                        </Button>
-                                    </div>
                                 </form>
                             )}
 
